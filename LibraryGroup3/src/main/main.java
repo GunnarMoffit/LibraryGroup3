@@ -1,8 +1,9 @@
-package (default package);
-public class Main {
+package main;
+
+public class main {
 
 	public static void main(String[] args) {
-		// This is my main contributions
+		// fixed my issue Gunnar
 		System.out.print("hello world!");
 	}
 
