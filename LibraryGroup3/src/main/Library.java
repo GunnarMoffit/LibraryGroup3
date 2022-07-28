@@ -8,7 +8,7 @@ public class Libary {
 
     Magazine;
 
-    RefererenceBook;
+    ReferenceBook;
 
     Journal;
 
