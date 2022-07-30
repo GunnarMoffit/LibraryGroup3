@@ -30,7 +30,7 @@ public class Libary {
 
     }
 
-    public void addItem(String name, Float value, boolean loanable, boolean restricted, boolean available){
+    public void addItem(String name, float value, boolean loanable, boolean restricted, boolean available){
 
         Item newItem = new Item(name, value, loanable, restricted, available);
 
@@ -46,7 +46,6 @@ public class Libary {
     }
 
     public void getUserInfo(int libraryCardNum){
-
         for(User : users) {
             if(User.getCardNumber() == libraryCardNum){
                 System.out.println("User found.\n");
@@ -66,7 +65,6 @@ public class Libary {
     }
 
     public void getItemInfo(String name){
-
         for(Item : items) {
             if(Item.getName() == name){
                 System.out.println("Item found.\n");
@@ -90,7 +88,7 @@ public class Libary {
     public void getUserCheckedOutItems(int libraryCardNum){
         for(User : users) {
             if(User.getCardNumber() == libraryCardNum){
-                System.out.println("User: " + User + "\n" + "Items: ");
+                System.out.println("User: " + User + "\n" + "Items checked out: ");
                 for(Item : User.getItems()) {
                     System.out.println(Item.getName() + "\n");
                 }
