@@ -5,36 +5,26 @@ import java.util.HashMap;
 
 public class Library {
 
-    //need method to return user specific checked out items "User.getItems()"
-    //need method to return item specific fines, Item.getFine()
-    //need method to return item specific due date, Item.getDueDate()
-    //need user constructor method in user class
-
-    //Map containing Library Card #'s as keys, and User objects as values
-    //HashMap<Integer, User> usersMap = new HashMap<>();
-    //
-    //Map containing Item names as keys, and Item objects as values
-    //HashMap<String, Item> itemMap = new HashMap<>();
+    //need method to return item specific fines, getFine()
+    //need method to return item specific due date, getDueDate()
 
     //List of Item objects, can be book, magazine, etc..
-    ArrayList<Item> items = new ArrayList<Item>();
-
+    public ArrayList<Item> items;
     //List of User objects, has name, address, etc..
-    ArrayList<User> users = new ArrayList<User>();
+    public ArrayList<User> users;
 
-    public void addUser(String name, String address, int phonenumber, int libraryCardID){
-
-        User newUser = new User(name, address, phonenumber, libraryCardID);
-
-        users.add(newUser);
-
+    //Generic Constructor
+    public Library() {
+        this.users = new ArrayList<>();
+        this.items = new ArrayList<>();
     }
 
-    public void addItem(String name, float value, boolean loanable, boolean restricted, boolean available){
+    public void addUser(User x){
+        users.add(x);
+    }
 
-        Item newItem = new Item(name, value, loanable, restricted, available);
-
-        items.add(newItem);
+    public void addItem(Item x){
+        items.add(x);
     }
 
     public ArrayList<User> getUserList(){
@@ -46,73 +36,109 @@ public class Library {
     }
 
     public void getUserInfo(int libraryCardNum){
-        for(User : users) {
-            if(User.getCardNumber() == libraryCardNum){
+        User tempUser;
+        int tempID;
+        boolean flag = false;
+        for(int x = 0; x < users.size(); x++) {
+            tempUser = users.get(x);
+            tempID = tempUser.getID();
+            if(tempID == libraryCardNum){
                 System.out.println("User found.\n");
                 System.out.println("Name: ");
-                System.out.println(User.getName() + "\n");
+                System.out.println(tempUser.getName() + "\n");
                 System.out.println("Address: ");
-                System.out.println(User.getAddress() + "\n");
+                System.out.println(tempUser.getAddress() + "\n");
                 System.out.println("Phone Number: ");
-                System.out.println(User.getPhoneNumber() + "\n");
+                System.out.println(tempUser.getPhoneNumber() + "\n");
                 System.out.println("Library Card Number: ");
                 System.out.println(libraryCardNum + "\n");
+                flag = true;
             }
-            else {
-                System.out.println("User not found. Please enter a valid library card number.");
-            }
+        }
+        if (flag != true) {
+            System.out.println("User not found. Please enter a valid ID.");
         }
     }
 
     public void getItemInfo(String name){
-        for(Item : items) {
-            if(Item.getName() == name){
+        Item tempItem;
+        String tempName;
+        boolean flag = false;
+        for(int x = 0; x < items.size(); x++) {
+            tempItem = items.get(x);
+            tempName = tempItem.getName();
+            if(tempName == name){
                 System.out.println("Item found.\n");
                 System.out.println("Name: ");
-                System.out.println(Item.getName() + "\n");
+                System.out.println(tempItem.getName() + "\n");
                 System.out.println("Value: ");
-                System.out.println(Item.getValue() + "\n");
+                System.out.println(tempItem.getValue() + "\n");
                 System.out.println("Loanability: ");
-                System.out.println(Item.isLoanable() + "\n");
-                System.out.println("Restriction: ");
-                System.out.println(Item.isRestricted() + "\n");
+                System.out.println(tempItem.isloanable() + "\n");
                 System.out.println("Availability: ");
-                System.out.println(Item.isAvailable() + "\n");
+                System.out.println(tempItem.isAvailable() + "\n");
+                flag = true;
             }
-            else {
-                System.out.println("Item not found. Please enter a valid item name.");
-            }
+        }
+        if (flag != true) {
+            System.out.println("Item not found. Please enter a valid item name.");
         }
     }
 
     public void getUserCheckedOutItems(int libraryCardNum){
-        for(User : users) {
-            if(User.getCardNumber() == libraryCardNum){
-                System.out.println("User: " + User.getName() + "\n" + "Items checked out: ");
-                for(Item : User.getItems()) {
-                    System.out.println(Item.getName() + "\n");
+        User tempUser;
+        int tempID;
+        Item tempItem;
+        String tempName;
+        for(int x = 0; x < users.size(); x++) {
+            tempUser = users.get(x);
+            tempID = tempUser.getID();
+            if(tempID == libraryCardNum){
+                System.out.println("User: " + tempUser.getName() + "\n" + "Items checked out: ");
+                for(int i = 0; i < tempUser.getItemsCheckedOut().size(); i++) {
+                    tempItem = items.get(i);
+                    tempName = tempItem.getName();
+                    System.out.println(tempName + "\n");
                 }
             }
         }
     }
 
     public void getUserItemsDueDates(int libraryCardNum){
-        for(User : users) {
-            if(User.getCardNumber() == libraryCardNum){
-                System.out.println("User: " + User.getName() + "\n" + "Items with due date: ");
-                for(Item : User.getItems()) {
-                    System.out.println(Item.getName() + ": " + Item.getDueDate() + "\n");
+        User tempUser;
+        int tempID;
+        Item tempItem;
+        String tempName;
+        for(int x = 0; x < users.size(); x++) {
+            tempUser = users.get(x);
+            tempID = tempUser.getID();
+            if(tempID == libraryCardNum){
+                System.out.println("User: " + tempUser.getName() + "\n" + "Items with due dates: ");
+                for(int i = 0; i < tempUser.getItemsCheckedOut().size(); i++) {
+                    tempItem = items.get(i);
+                    tempName = tempItem.getName();
+                    //getDueDate() isn't real
+                    //System.out.println(tempName + ": " + tempItem.getDueDate() + "\n");
                 }
             }
         }
     }
 
     public void getUserFines(int libraryCardNum){
-        for(User : users) {
-            if(User.getCardNumber() == libraryCardNum){
-                System.out.println("User: " + User.getName() + "\n" + "Item fines: ");
-                for(Item : User.getItems()) {
-                    System.out.println(Item.getName() + ": " + Item.getFine() + "\n");
+        User tempUser;
+        int tempID;
+        Item tempItem;
+        String tempName;
+        for(int x = 0; x < users.size(); x++) {
+            tempUser = users.get(x);
+            tempID = tempUser.getID();
+            if(tempID == libraryCardNum){
+                System.out.println("User: " + tempUser.getName() + "\n" + "Items with fines: ");
+                for(int i = 0; i < tempUser.getItemsCheckedOut().size(); i++) {
+                    tempItem = items.get(i);
+                    tempName = tempItem.getName();
+                    //getFine() isn't real
+                    //System.out.println(tempName + ": " + tempItem.getFine() + "\n");
                 }
             }
         }
