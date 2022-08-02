@@ -1,5 +1,6 @@
 package main;
 
+
 public class Item {
 	
 	
@@ -20,6 +21,9 @@ public class Item {
 	//boolean to determine whether the item is available
 	//default is 1
 	protected boolean available;
+	
+	// Due date
+	protected Loans loan;
 
 	
 	
@@ -64,5 +68,9 @@ public class Item {
 	public void setAvailable(boolean setter) {
 		this.available = setter;
 	};
+	
+	public void setLoan(User x) {
+		this.loan = new ShortTermLoan(x, this);		
+	}
 	
 }

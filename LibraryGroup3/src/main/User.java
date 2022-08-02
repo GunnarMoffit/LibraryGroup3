@@ -9,21 +9,16 @@ public class User {
 	private String address;
 	private String phoneNumber;
 	private int ID;
-	private ArrayList<Item> ItemsCheckedOut;
-	private int numItemsChecked;
+	private ArrayList<String> ItemsCheckedOut;
 	private int age;
-	private ArrayList<Item> ItemsRequested;
-	private int numItemsRequested;
+	private ArrayList<String> ItemsRequested;
 	private double fines;
 	
-	public User(String name1, String address1, String phoneNumber1, int cardID, int Age) {
+	public User(String name1, String address1, String phoneNumber1, int Age) {
 		this.setName(name1);
 		this.setAddress(address1);
 		this.setPhoneNumber(phoneNumber1);
-		this.setID(cardID);
 		this.setAge(Age);	
-		this.numItemsChecked = 0;
-		this.numItemsRequested = 0;
 		this.fines = 0;
 		this.ItemsCheckedOut = new ArrayList<>();
 		this.ItemsRequested = new ArrayList<>();
@@ -81,12 +76,28 @@ public class User {
 
 
 	public int getNumItemsChecked() {
-		return numItemsChecked;
+		return this.ItemsCheckedOut.size();
 	}
 
 
 	public int getNumItemsRequested() {
-		return numItemsRequested;
+		return this.ItemsRequested.size();
+	}
+	
+	public void addItemChecked(Item item) {
+		this.ItemsCheckedOut.add(item.getName());
+	}
+	
+	public void remItemChecked(Item item) {
+		this.ItemsCheckedOut.remove(item.getName());
+	}
+	
+	public void addItemRequested(Item item) {
+		this.ItemsRequested.add(item.getName());
+	}
+	
+	public void remItemRequested(Item item) {
+		this.ItemsRequested.remove(item.getName());
 	}
 
 
@@ -99,23 +110,45 @@ public class User {
 	}
 	
 	public void payFines(double x) {
-		this.fines = this.fines + x;
+		this.fines = this.fines - x;
 	}
 	
-	public void requestItem(Item item, Library library) {
-
-		Book booktemp = new Book("1", 1f, true);
-		Class<? extends Item> typeCompare = item.getClass();
+	public String requestItem(Item item) {
+		String message = "Error";
 		if (this.age <= 12) {
 			if (this.ItemsCheckedOut.size() == 5) {
-				System.out.println("Maximum number of Items checked out \n");
+				message ="Maximum number of Items checked out \n";
 			}
 		}
 		else if (item.isloanable() == false) {
-			System.out.println("This item cannot be checked out");
+			message = "This item cannot be checked out";
 		}
 		else if (item.isAvailable() == true){
-			
+			item.setLoan(this);
+			item.setAvailable(false);
+			this.addItemChecked(item);
+			this.remItemRequested(item);
+			message = "This item is checked out";
 		}
+		else {
+			item.setRequested(false);
+			this.addItemRequested(item);
+			message = "This item is not avaiable, Item is now Requested";
+		}		
+		return message;
+	}
+	
+	public String renewItem(Item item) {
+		String message = item.loan.setRenewed(item);
+		return message;
+	}
+	
+	public String checkInItem(Item item) {
+		this.addFines((item.loan.calculateFine(item)));
+		item.loan.remLoanData(item);
+		this.remItemChecked(item);
+		item.setAvailable(true);
+		String message = "Item Checkedd in";
+		return message;
 	}
 }

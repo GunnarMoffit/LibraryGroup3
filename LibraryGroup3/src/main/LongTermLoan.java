@@ -2,36 +2,30 @@ package main;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
+
 
 public class LongTermLoan extends Loans{        //Long Term Loans
 
-    private LocalDate dueDate;
+
 
 
 
     public LongTermLoan(User user, Item item) {                     //Constructor automatically sets up start and end date automatically
-        super(User user, Item item);
+        super(user, item);
         this.setDueDate();
     }
 
-    private void setStartDate() {               //Start date used local system clock, can adjust to include time
-        LocalDate start = LocalDate.now();
-        this.startDate = start;
-    }
     
-    private void setDueDate() {                 //Due date uses start date adding 21 days
+    @Override public String setDueDate() {                 //Due date uses start date adding 21 days
+    	String message = "Book is due in 21 days";
         this.dueDate = this.startDate.plusDays(21);
+        return message;
     }
 
-    public String getDueDate() {                //Getter function -- returns date in string in form "yyyy-mm-dd"
-        String formDue = this.dueDate.format(DateTimeFormatter.ISO_DATE);     
-        return formDue;
-    }
 
-    public String setRenewed() {                //Renewal Request setter -- returns string of status and pass/fail, can change return value
+    @Override public String setRenewed(Item item) {                //Renewal Request setter -- returns string of status and pass/fail, can change return value
         String message;
-        if (this.requested == true) {                   
+        if (item.isRequested() == true) {                   
             String formDue = this.dueDate.format(DateTimeFormatter.ISO_DATE);           
             message = ("Book has been requested. Due Date is still: " + formDue + "\n");    //If requested, renewal denied with message
         }
@@ -48,22 +42,6 @@ public class LongTermLoan extends Loans{        //Long Term Loans
             message = ("Book is renewed. New Due Date is: " + formDue + "\n");
         }
         return message;
-    }
-
-    public double calculateFine(double price, LocalDate today) {    //Altered to run without Item, switch arguments after constructors built
-        double fee = 0;
-        //double price = item.getValue();
-        //LocalDate today = LocalDate.now();
-        boolean isAfter = today.isAfter(this.dueDate);
-        if (isAfter == true) {
-            double days = ChronoUnit.DAYS.between(this.dueDate, today); //If current day is after due date, assess fee
-            double feePerDay = 0.10;
-            fee = days * feePerDay;
-        }
-        if (fee > price) {                                               //If fee is greater than item price, fee = price
-            fee = price;
-        }   
-        return fee;                                                     //Returns fee -- double unformatted
     }
        
 }

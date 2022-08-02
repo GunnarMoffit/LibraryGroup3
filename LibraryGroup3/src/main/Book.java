@@ -17,6 +17,10 @@ public class Book extends Item {
 	public boolean isBestSeller() {
 		return this.bestSeller;
 	}
+	
+	public void setBestSeller(boolean x) {
+		this.bestSeller = x;
+	}
 
 	public boolean isRenewed() {
 		return renewed;
@@ -25,5 +29,14 @@ public class Book extends Item {
 	public void setRenewed(boolean renewed) {
 		this.renewed = renewed;
 	};
+	
+	@Override public void setLoan(User x) {
+		if (this.bestSeller == true) {
+			this.loan = new ShortTermLoan(x, this);		
+		}
+		else {
+			this.loan = new LongTermLoan(x, this);	
+		}
+	}
 	
 }

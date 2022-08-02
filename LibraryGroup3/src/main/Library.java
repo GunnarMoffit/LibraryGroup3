@@ -1,7 +1,6 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Library {
 
@@ -11,6 +10,7 @@ public class Library {
     //need user constructor method in user class
 	public ArrayList<Item> items;
 	public ArrayList<User> users;
+	private int userID = 10001;
     //Map containing Library Card #'s as keys, and User objects as values
     //HashMap<Integer, User> usersMap = new HashMap<>();
     //
@@ -24,13 +24,12 @@ public class Library {
 
 
     //List of User objects, has name, address, etc..
-
+    
 
     public void addUser(User x){
-
-
-        users.add(x);
-
+        x.setID(userID);
+    	users.add(x);
+        userID++;
     }
 
     public void addItem(Item y){
