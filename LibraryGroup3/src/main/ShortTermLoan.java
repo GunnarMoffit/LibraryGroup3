@@ -1,8 +1,10 @@
+package main;
+
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
-public class LongTermLoan extends Loans{        //Long Term Loans
+public class ShortTermLoan extends Loans{           //Short term Loans
     private LocalDate startDate;
     private LocalDate dueDate;
     public boolean renewed;
@@ -10,38 +12,38 @@ public class LongTermLoan extends Loans{        //Long Term Loans
 
 
 
-    public LongTermLoan() {                     //Constructor automatically sets up start and end date automatically
+    public ShortTermLoan(User user, Item item) {                        //Constructor automatically sets up start and end date automatically
         this.setStartDate();
         this.setDueDate();
     }
 
-    private void setStartDate() {               //Start date used local system clock, can adjust to include time
+    private void setStartDate() {                   //Start date used local system clock, can adjust to include time
         LocalDate start = LocalDate.now();
         this.startDate = start;
     }
     
-    private void setDueDate() {                 //Due date uses start date adding 21 days
-        this.dueDate = this.startDate.plusDays(21);
+    private void setDueDate() {
+        this.dueDate = this.startDate.plusDays(14); //Due date uses start date adding 14 days
     }
 
-    public String getDueDate() {                //Getter function -- returns date in string in form "yyyy-mm-dd"
-        String formDue = this.dueDate.format(DateTimeFormatter.ISO_DATE);     
+    public String getDueDate() {
+        String formDue = this.dueDate.format(DateTimeFormatter.ISO_DATE);   //Getter function -- returns date in string in form "yyyy-mm-dd"
         return formDue;
     }
 
-    public String setRenewed() {                //Renewal Request setter -- returns string of status and pass/fail, can change return value
+    public String setRenewed() {                        //Renewal Request setter -- returns string of status and pass/fail, can change return value
         String message;
-        if (this.requested == true) {                   
-            String formDue = this.dueDate.format(DateTimeFormatter.ISO_DATE);           
+        if (this.requested == true) {
+            String formDue = this.dueDate.format(DateTimeFormatter.ISO_DATE);
             message = ("Book has been requested. Due Date is still: " + formDue + "\n");    //If requested, renewal denied with message
         }
-        else if (this.renewed == true) {
+        else if ((this.requested == false) && (this.renewed == true)) {
             String formDue = this.dueDate.format(DateTimeFormatter.ISO_DATE);
             message = ("Book has already been renewed. Due Date is still: " + formDue + "\n");  //If renewed already, renewal denied with message
         }
-        else {                                                              
+        else {                              //If not requested or renewed - Add 14 days 
             LocalDate ren = this.dueDate;
-            ren = ren.plusDays(21);                                     //If neither, 21 days added to due date
+            ren = ren.plusDays(14);
             this.dueDate = ren;
             this.renewed = true;
             String formDue = this.dueDate.format(DateTimeFormatter.ISO_DATE);
@@ -53,6 +55,7 @@ public class LongTermLoan extends Loans{        //Long Term Loans
     public double calculateFine(double price, LocalDate today) {    //Altered to run without Item, switch arguments after constructors built
         double fee = 0;
         //double price = item.getValue();
+        //
         //LocalDate today = LocalDate.now();
         boolean isAfter = today.isAfter(this.dueDate);
         if (isAfter == true) {
@@ -60,10 +63,10 @@ public class LongTermLoan extends Loans{        //Long Term Loans
             double feePerDay = 0.10;
             fee = days * feePerDay;
         }
-        if (fee > price) {                                               //If fee is greater than item price, fee = price
+        if (fee > price) {                  //If fee is greater than item price, fee = price
             fee = price;
-        }   
-        return fee;                                                     //Returns fee -- double unformatted
+        }
+        return fee;                         //Returns fee -- double unformatted
     }
        
 }

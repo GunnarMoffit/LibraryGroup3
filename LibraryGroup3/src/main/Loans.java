@@ -1,16 +1,18 @@
+package main;
+
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 
 public class Loans {                    //SuperClass for loans
     
-    private LocalDate startDate;
+    protected LocalDate startDate;
+    protected LocalDate dueDate;
     public boolean renewed;
-    public boolean requested;
 
 
 
-    public Loans() {                    //Generic Constructor
+    public Loans(User user, Item item) {                    //Generic Constructor
         this.setStartDate();
     }
 
@@ -30,7 +32,4 @@ public class Loans {                    //SuperClass for loans
     }
 
     
-    public void setRequested(boolean setting) {     //Set Requested by library
-        this.requested = setting;
-    } 
 }
