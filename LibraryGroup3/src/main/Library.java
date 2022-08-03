@@ -17,7 +17,8 @@ public class Library implements java.io.Serializable{
 	public ArrayList<User> users;
 	public ArrayList<Book> books;
 	public ArrayList<AudVid> audvids;
-	public ArrayList<Item> magrefs;
+	public ArrayList<Magazine> mags;
+	public ArrayList<ReferenceBook> refbooks;
 	private int userID = 10000;
     //Map containing Library Card #'s as keys, and User objects as values
     //HashMap<Integer, User> usersMap = new HashMap<>();
@@ -29,7 +30,8 @@ public class Library implements java.io.Serializable{
         this.items = new ArrayList<>();
         this.books = new ArrayList<>();
         this.audvids = new ArrayList<>();
-        this.magrefs = new ArrayList<>();
+        this.mags = new ArrayList<>();
+        this.refbooks = new ArrayList<>();
         
     }
     //List of Item objects, can be book, magazine, etc..
@@ -45,9 +47,24 @@ public class Library implements java.io.Serializable{
     }
 
     public void addItem(Item y){
-
-
+    	Book bookEx = new Book("1", 9.55f, false);
+    	AudVid avEx = new AudVid("1", 1.50f);
+    	ReferenceBook refBook = new ReferenceBook("Map", 3.85f);
+        Magazine mag = new Magazine("Ex", 19.99f);
+        if (y.getClass() == bookEx.getClass()) {
+        	books.add((Book) y);
+        }
+        else if (y.getClass() == avEx.getClass()) {
+        	audvids.add((AudVid) y);
+        }
+        else if (y.getClass() == refBook.getClass()) {
+        	refbooks.add((ReferenceBook) y);
+        }
+        else {
+        	mags.add((Magazine) y);
+        }
         items.add(y);
+        	
     }
 
     public ArrayList<User> getUserList(){
@@ -256,6 +273,122 @@ public class Library implements java.io.Serializable{
     
     public void addAudVid(AudVid y){
         audvids.add(y);
+    }
+    
+    public void writeMags() {
+    	String filename = "Mags.bin";
+        // Serialization 
+        try
+        {   
+            //Saving of object in a file
+            FileOutputStream file = new FileOutputStream(filename);
+            ObjectOutputStream out = new ObjectOutputStream(file);
+              
+            for (Magazine mag : this.mags) {
+            	out.writeObject(mag);
+            }
+
+            out.close();
+            file.close();
+              
+            System.out.println("Object has been serialized");
+  
+        }
+          
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }    	
+	
+    }
+   
+
+    public void readMags() {
+    	String filename = "Mags.bin";
+    	try
+        {   
+            // Reading the object from a file
+            FileInputStream file = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(file);
+    		while(true) {
+    			addMags((Magazine) in.readObject());
+    		}
+    			
+    	}
+    	catch(Exception e) {}
+
+            
+            System.out.println("Object has been deserialized ");
+    }
+    
+    public void addMags(Magazine y){
+        mags.add(y);
+    }
+
+    
+    public void writeRefBook() {
+    	String filename = "RefBook.bin";
+        // Serialization 
+        try
+        {   
+            //Saving of object in a file
+            FileOutputStream file = new FileOutputStream(filename);
+            ObjectOutputStream out = new ObjectOutputStream(file);
+              
+            for (ReferenceBook refbook : this.refbooks) {
+            	out.writeObject(refbook);
+            }
+
+            out.close();
+            file.close();
+              
+            System.out.println("Object has been serialized");
+  
+        }
+          
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }    	
+	
+    }
+   
+
+    public void readRefBook() {
+    	String filename = "RefBook.bin";
+    	try
+        {   
+            // Reading the object from a file
+            FileInputStream file = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(file);
+    		while(true) {
+    			addRefBook((ReferenceBook) in.readObject());
+    		}
+    			
+    	}
+    	catch(Exception e) {}
+
+            
+            System.out.println("Object has been deserialized ");
+    }
+    
+    public void addRefBook(ReferenceBook y){
+        refbooks.add(y);
+    }
+    
+    public void integrate() {
+    	for (ReferenceBook refbook : this.refbooks) {
+    		items.add(refbook);
+    	}
+    	for (Magazine mag : this.mags) {
+    		items.add(mag);
+    	}
+    	for (Book book: this.books) {
+    		items.add(book);
+    	}
+    	for (AudVid av : this.audvids) {
+    		items.add(av);
+    	}	
     }
     
     

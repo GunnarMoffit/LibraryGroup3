@@ -14,6 +14,13 @@ public static void main(String[] args) {            //Main set for testing loans
         
 		Library library = new Library();
 		
+        library.readMags();
+        library.readRefBook();
+        library.readAudVid();
+        library.readBooks();
+        library.integrate();
+        
+		
         //User user1 = new User("John", "11517 Flushwing Drive", "979-824-9001", 15);
         //User user2 = new User("Annabel", "202 Mesquite Street", "979-841-1001", 8);
         //User user3 = new User("Tom", "911 Hospital Lane", "999-954-1122", 98);
@@ -27,34 +34,54 @@ public static void main(String[] args) {            //Main set for testing loans
         //library.addUser(user5);
         
         
-        //Book bookEx = new Book("Book 1", 9.55f, false);
-        //Book book1 = new Book("Book 2", 9.55f, false);
-        //Book book2 = new Book("Book 3", 9.55f, false);
-        //Book book3 = new Book("Book 4", 9.55f, false);
+        //Book bookEx = new Book("Gone with the Wind", 12.19f, false);
+        //Book book1 = new Book("Harry Potter: The Deathly Hallows", 18.90f, false);
+        //Book book2 = new Book("Verity", 16.78f, true);
+        //Book book3 = new Book("A Tale of Two Cities", 7.00f, false);
+        //Book book4 = new Book("Elmo", 9.55f, false);
         
-        //AudVid avEx = new AudVid("1", 20f);
-		//AudVid av1 = new AudVid("2", 20f);
-		//AudVid av2 = new AudVid("3", 20f);
-		//AudVid av3 = new AudVid("4", 20f);
-		//AudVid av4 = new AudVid("5", 20f);
+        //AudVid avEx = new AudVid("The Prince's new Groove", 8.90f);
+		//AudVid av1 = new AudVid("The Princess Bride", 6.89f);
+		//AudVid av2 = new AudVid("Planet Earth: Season 2 Episode 4", 4.56f);
+		//AudVid av3 = new AudVid("Carl Sagan: The Age of Exploration Lecture", 2.89f);
+		//AudVid av4 = new AudVid("City of San Marcos Documentary", 2.16f);
 		
 		
 		
-        //library.addAudVid(avEx);
-        //library.addAudVid(av1);
-        //library.addAudVid(av2);
-        //library.addAudVid(av3);
-        //library.addAudVid(av4);
-        //ReferenceBook refBook = new ReferenceBook("Map of USA", 3.85f);
-        //Magazine mag = new Magazine("Hustler", 19.99f);
+
+		
+        //ReferenceBook refBook1 = new ReferenceBook("Map of USA", 3.85f);
+		//ReferenceBook refBook2 = new ReferenceBook("How to Win Friends and Influence People", 4.99f);
+		//ReferenceBook refBook3 = new ReferenceBook("The Official ACT Prep Guide 2022-2023", 16.86f);
+		//ReferenceBook refBook4 = new ReferenceBook("The Elements of Style", 3.95f);
+		//ReferenceBook refBook5 = new ReferenceBook("Encyclopedia Britannica 2018 'F'", 29.90f);
+		
+        //Magazine mag1 = new Magazine("Hot Rods", 18.99f);
+		//Magazine mag2 = new Magazine("Sports Illustrated", 3.27f);
+		//Magazine mag3 = new Magazine("Better Home and Gardens", 2.12f);
+		//Magazine mag4 = new Magazine("Game Informer", 5.34f);
+		//Magazine mag5 = new Magazine("Cosmopolitan", 3.69f);
         
-        //library.addItem(mag);
+        //library.addItem(mag1);
+		//library.addItem(mag2);
+		//library.addItem(mag3);
+		//library.addItem(mag4);
+		//library.addItem(mag5);
+        //library.addItem(refBook1);
+		//library.addItem(refBook2);
+		//library.addItem(refBook3);
+		//library.addItem(refBook4);
+		//library.addItem(refBook5);
+        //library.addItem(bookEx);
+        //library.addItem(book1);
+        //library.addItem(book2);
+        //library.addItem(book3);
+        //library.addItem(book4);
         //library.addItem(avEx);
-        //library.addItem(refBook);
-        //library.addBook(bookEx);
-        //library.addBook(book1);
-        //library.addBook(book2);
-        //library.addBook(book3);
+        //library.addItem(av1);
+        //library.addItem(av2);
+        //library.addItem(av3);
+        //library.addItem(av4);
         
     	//userEx.requestItem(bookEx);
         //userEx.checkInItem(bookEx);
@@ -64,7 +91,7 @@ public static void main(String[] args) {            //Main set for testing loans
         //userEx.checkInItem(book2);
         //userEx.requestItem(book3);
         //userEx.checkInItem(book3);
-        LibraryView libraryview = new LibraryView(library);    //  
+         
         
         //String bookName = bookEx.getName();
     	//float bookValue = bookEx.getValue();
@@ -119,14 +146,15 @@ public static void main(String[] args) {            //Main set for testing loans
         //System.out.println("StartDate : " + bookEx.loan.getStartDate());
         //System.out.println("DueDate : " + bookEx.loan.getDueDate());
         //System.out.println("Loaner : " + bookEx.loan.getLoaner());
+
         
+        LibraryView libraryview = new LibraryView(library); 
+
         
-        
-        library.readAudVid();
-        
-        for (AudVid av : library.audvids) {
-            System.out.println(av.getName() + "\n");
+        for (Item item : library.items) {
+            System.out.println(item.getName());
         }
+
     	//else {
     		//System.out.println("Class Name: " + classString + "\n");
     	//}

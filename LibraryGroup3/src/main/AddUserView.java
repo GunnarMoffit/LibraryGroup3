@@ -6,10 +6,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddUserView extends JFrame {
-    private JFrame userFrame;
-    private JPanel userPanel;
-    private JButton addButton;
-    private JTextField TextField;
+    private JFrame userFrame = new JFrame("New User");
+    private JPanel userPanel = new JPanel();
+    private JLabel nameLabel = new JLabel("Name: ");
+    private JTextField nameField = new JTextField(10);
+    private JLabel addressLabel = new JLabel("Address: ");
+    private JTextField addressField = new JTextField(10);
+    private JLabel ageLabel = new JLabel("Age: ");
+    private JTextField ageField = new JTextField(10);
+    private JLabel phoneNumberLabel = new JLabel("Phone #: ");
+    private JTextField phoneNumberField = new JTextField(10);
+    private JButton addButton = new JButton("Add User");
+    protected Library library;
 
     //  "New User"
     //  Name:
@@ -18,31 +26,39 @@ public class AddUserView extends JFrame {
     //  Phone #:
     //  AddUser Button
 
-    AddUserView() {
-        JFrame frame = new JFrame("New User");
-        this.userFrame = frame;
+    AddUserView(Library library) {
+        this.library = library;
+
         userFrame.setSize(450, 550);
         userFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel panel = new JPanel();
-        this.userPanel = panel;
-        userPanel.setLayout(new GridLayout(4, 1));
+        userPanel.setLayout(new GridLayout(5, 1));
 
-        JTextField textField = new JTextField();
-        this.TextField = textField;
-        String text = TextField.getText();
+        //Text Field
+        String name = nameField.getText();
+        String address = addressField.getText();
+        String age = ageField.getText();
+        String phoneNumber = phoneNumberField.getText();
 
-        JButton Button = new JButton("Add User");
-        this.addButton = Button;
-        Button.addActionListener(new ActionListener() {
+        //Add User Button
+        addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == addButton) {
                     userFrame.dispose();
+                    LibraryView libraryview = new LibraryView(library);
                 }
             }
         });
 
+        userPanel.add(nameLabel);
+        userPanel.add(nameField);
+        userPanel.add(addressLabel);
+        userPanel.add(addressField);
+        userPanel.add(ageLabel);
+        userPanel.add(ageField);
+        userPanel.add(phoneNumberLabel);
+        userPanel.add(phoneNumberField);
         userPanel.add(addButton);
         userFrame.add(userPanel);
         userFrame.setVisible(true);
