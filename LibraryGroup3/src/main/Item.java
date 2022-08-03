@@ -1,9 +1,15 @@
 package main;
 
+import java.io.*;
 
-public class Item {
+public class Item implements java.io.Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//name of item
 	protected String name;
 	

@@ -1,5 +1,11 @@
 package main;
 
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class main {
 
@@ -12,7 +18,11 @@ public static void main(String[] args) {            //Main set for testing loans
         library.addUser(userEx);
         
         
-        Book bookEx = new Book("The Bible", 9.55f, false);
+        //Book bookEx = new Book("Book 1", 9.55f, false);
+        //Book book1 = new Book("Book 2", 9.55f, false);
+        //Book book2 = new Book("Book 3", 9.55f, false);
+        //Book book3 = new Book("Book 4", 9.55f, false);
+        
         AudVid avEx = new AudVid("The Departed", 20f);
         ReferenceBook refBook = new ReferenceBook("Map of USA", 3.85f);
         Magazine mag = new Magazine("Hustler", 19.99f);
@@ -20,18 +30,27 @@ public static void main(String[] args) {            //Main set for testing loans
         library.addItem(mag);
         library.addItem(avEx);
         library.addItem(refBook);
-        library.addItem(bookEx);
+        //library.addBook(bookEx);
+        //library.addBook(book1);
+        //library.addBook(book2);
+        //library.addBook(book3);
         
-    	userEx.requestItem(bookEx);
-    	userEx.requestItem(mag);
+    	//userEx.requestItem(bookEx);
         //userEx.checkInItem(bookEx);
+        //userEx.requestItem(book1);
+        //userEx.checkInItem(book1);
+        //userEx.requestItem(book2);
+        //userEx.checkInItem(book2);
+        //userEx.requestItem(book3);
+        //userEx.checkInItem(book3);
         
-        String bookName = bookEx.getName();
-    	float bookValue = bookEx.getValue();
-    	boolean bookLoan = bookEx.isloanable();
-    	boolean bookReq = bookEx.isRequested();
-    	boolean bookAv = bookEx.isAvailable();
-    	boolean bestSel = bookEx.isBestSeller();
+        
+        //String bookName = bookEx.getName();
+    	//float bookValue = bookEx.getValue();
+    	//boolean bookLoan = bookEx.isloanable();
+    	//boolean bookReq = bookEx.isRequested();
+    	//boolean bookAv = bookEx.isAvailable();
+    	//boolean bestSel = bookEx.isBestSeller();
     	
 
         String avName = avEx.getName();
@@ -60,27 +79,39 @@ public static void main(String[] args) {            //Main set for testing loans
     	int numItemsRequested = userEx.getNumItemsRequested();
     	double fines = userEx.getFines();
     	int ID = userEx.getID();
-        System.out.println("");
-        System.out.println("Name: " + name);
-        System.out.println("Address: " + address);
-        System.out.println("phone: " + phoneNumber);
-        System.out.println("ID: " + ID);
-        System.out.println("numItemsChecked : " + numItemsChecked);
-        System.out.println("age: " + age);
-        System.out.println("numItemsRequested: " + numItemsRequested);
-        System.out.println("fines: " + fines + "\n");
+        //System.out.println("");
+        //System.out.println("Name: " + name);
+        //System.out.println("Address: " + address);
+        //System.out.println("phone: " + phoneNumber);
+        //System.out.println("ID: " + ID);
+        //System.out.println("numItemsChecked : " + numItemsChecked);
+        //System.out.println("age: " + age);
+        //System.out.println("numItemsRequested: " + numItemsRequested);
+        //System.out.println("fines: " + fines + "\n");
         
-        System.out.println("Name: " + bookName);
-        System.out.println("Value: " + bookValue);
-        System.out.println("BookLoan: " + bookLoan);
-        System.out.println("bookReq: " + bookReq);
-        System.out.println("bookAv : " + bookAv);
-        System.out.println("bestSel : " + bestSel);
-        System.out.println("StartDate : " + bookEx.loan.getStartDate());
-        System.out.println("DueDate : " + bookEx.loan.getDueDate());
-        System.out.println("Loaner : " + bookEx.loan.getLoaner());
+        //System.out.println("Name: " + bookName);
+        //System.out.println("Value: " + bookValue);
+        //System.out.println("BookLoan: " + bookLoan);
+        //System.out.println("bookReq: " + bookReq);
+        //System.out.println("bookAv : " + bookAv);
+        //System.out.println("bestSel : " + bestSel);
+        //System.out.println("StartDate : " + bookEx.loan.getStartDate());
+        //System.out.println("DueDate : " + bookEx.loan.getDueDate());
+        //System.out.println("Loaner : " + bookEx.loan.getLoaner());
         
-
+        
+        
+        library.readBooks();
+        
+        for (Book book : library.books) {
+            System.out.println("Name: " + book.getName());
+            System.out.println("StartDate : " + book.getValue());
+            System.out.println("available : " + book.isAvailable());
+            System.out.println("bestsell : " + book.isBestSeller());
+            System.out.println("renew : " + book.isRenewed());
+            System.out.println("Request : " + book.isRequested());
+            System.out.println("Request : " + book.isloanable() + "\n");
+        }
     	//else {
     		//System.out.println("Class Name: " + classString + "\n");
     	//}

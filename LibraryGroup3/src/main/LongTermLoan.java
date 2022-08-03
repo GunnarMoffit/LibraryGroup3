@@ -10,7 +10,13 @@ public class LongTermLoan extends Loans{        //Long Term Loans
 
 
 
-    public LongTermLoan(User user, Item item) {                     //Constructor automatically sets up start and end date automatically
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+	public LongTermLoan(User user, Item item) {                     //Constructor automatically sets up start and end date automatically
         super(user, item);
         this.setDueDate();
     }

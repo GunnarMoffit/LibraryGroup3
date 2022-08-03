@@ -5,9 +5,13 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 
-public class Loans {                    //SuperClass for loans
+public class Loans implements java.io.Serializable {                    //SuperClass for loans
     
-    protected LocalDate startDate;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected LocalDate startDate;
     protected LocalDate dueDate;
     protected boolean renewed;
     protected String loaner;
@@ -16,8 +20,9 @@ public class Loans {                    //SuperClass for loans
 
     public Loans(User user, Item item) {                    //Generic Constructor
         this.setStartDate();
-        this.loaner = user.getName();
+        this.dueDate = this.startDate;
         this.renewed = false;
+        this.loaner = "";
     }
 
     public void setStartDate() {           //Sets start Date to local system clock. Can adjust to include time if needed
@@ -26,7 +31,13 @@ public class Loans {                    //SuperClass for loans
     }
 
     public String getStartDate() {
-        String formStart = this.startDate.format(DateTimeFormatter.ISO_DATE);       // Getter function, returns string in form "yyyy-mm-dd", can adjust
+    	String formStart;
+        if (this.startDate == null) {
+        	formStart = "";
+        }
+        else {
+        formStart = this.startDate.format(DateTimeFormatter.ISO_DATE);       // Getter function, returns string in form "yyyy-mm-dd", can adjust
+        	}
         return formStart;
     }
     
@@ -35,8 +46,14 @@ public class Loans {                    //SuperClass for loans
         return message;
     }
     
-    public String getDueDate() {                //Getter function -- returns date in string in form "yyyy-mm-dd"
-        String formDue = this.dueDate.format(DateTimeFormatter.ISO_DATE);     
+    public String getDueDate() {
+    	String formDue;
+        if (this.dueDate == null) {
+        	formDue = "";
+        }
+        else {//Getter function -- returns date in string in form "yyyy-mm-dd"
+        	formDue = this.dueDate.format(DateTimeFormatter.ISO_DATE);
+        }
         return formDue;
     }
 
@@ -73,7 +90,13 @@ public class Loans {                    //SuperClass for loans
     }
     
     public String getLoaner() {
-        String loaner = this.loaner;      // Getter function, returns string in form "yyyy-mm-dd", can adjust
+        String loaner;
+        if(this.loaner == null) {
+        	loaner = "";
+        }
+        else {
+        	loaner = this.loaner;// Getter function, returns string in form "yyyy-mm-dd", can adjust
+        }
         return loaner;
     }
     

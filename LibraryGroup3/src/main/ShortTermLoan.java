@@ -8,7 +8,13 @@ public class ShortTermLoan extends Loans{           //Short term Loans
 
 
 
-    public ShortTermLoan(User user, Item item) {                     //Constructor automatically sets up start and end date automatically
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+	public ShortTermLoan(User user, Item item) {                     //Constructor automatically sets up start and end date automatically
         super(user, item);
         this.setDueDate();
     }

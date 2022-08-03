@@ -3,6 +3,10 @@ package main;
 public class Book extends Item {
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean bestSeller;
 	private boolean renewed;
 	
@@ -10,8 +14,7 @@ public class Book extends Item {
 		super(a, b);
 		this.loanable = true;
 		this.bestSeller = c;
-		this.renewed = false;
-		
+		this.renewed = false;	
 	}
 
 	public boolean isBestSeller() {
