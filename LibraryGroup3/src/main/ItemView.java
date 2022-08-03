@@ -4,9 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ItemView extends JFrame {
-    private JFrame userFrame;
-    private JPanel userPanel;
-    private JButton searchButton;
+    private JFrame itemFrame;
+    private JPanel itemPanel;
+    private JButton okButton;
     private JTextField textField;
 
     //"Item Description"
@@ -17,48 +17,30 @@ public class ItemView extends JFrame {
     //  Requested:
     //  Date Due:
     //  OK button to return to LibraryView()
-    
+
     ItemView(Library library) {
         JFrame frame = new JFrame("Item Description");
-        this.userFrame = frame;
-        userFrame.setSize(450, 550);
-        userFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.itemFrame = frame;
+        itemFrame.setSize(450, 550);
+        itemFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel();
-        this.userPanel = panel;
-        userPanel.setLayout(new GridLayout(4, 1));
+        this.itemPanel = panel;
+        itemPanel.setLayout(new GridLayout(4, 1));
 
-        JButton Button = new JButton("Search");
-        this.searchButton = Button;
+        JButton Button = new JButton("Ok");
+        this.okButton = Button;
         Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == Button) {
-                    frame.dispose();
-
-
-                    JFrame frame1 = new JFrame("User Lookup");
-//                this.userFrame = frame;
-                    frame1.setSize(450, 550);
-                    frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-                    JPanel panel = new JPanel();
-                    //this.userPanel = userPanel;
-                    panel.setLayout(new GridLayout(4, 1));
-
-                    String text = textField.getText();
-                    JTextField textField = new JTextField();
-
-                    panel.add(textField);
-                    frame1.add(panel);
-                    frame1.setVisible(true);
+                if (e.getSource() == okButton) {
+                    itemFrame.dispose();
                 }
             }
         });
 
-
-        userPanel.add(searchButton);
-        userFrame.add(panel);
-        userFrame.setVisible(true);
+        itemPanel.add(okButton);
+        itemFrame.add(itemPanel);
+        itemFrame.setVisible(true);
     }
 }

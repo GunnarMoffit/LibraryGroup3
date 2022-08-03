@@ -14,7 +14,7 @@ public class ItemSearchView extends JFrame {
     //"Item Search Window"
     //  TextField
     //  Search Button
-    
+
     ItemSearchView(Library library){
         JFrame frame = new JFrame("Item Search Window");
         this.Frame = frame;
@@ -40,8 +40,8 @@ public class ItemSearchView extends JFrame {
                 for(int i = 0; i < library.items.size(); i++) {
                     tempItem = library.getItemList().get(i);
                     tempName = tempItem.getName();
-                    if (text.equals(tempName) && e.getSource() == button) {
-                        frame.dispose();
+                    if (text.equals(tempName) && e.getSource() == searchButton) {
+                        Frame.dispose();
                         ItemView item = new ItemView(library);
                         flag = true;
                     }

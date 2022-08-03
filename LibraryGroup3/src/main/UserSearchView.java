@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +14,7 @@ public class UserSearchView extends JFrame {
     //"User Search Window"
     //  TextField
     //  Search Button
-    
+
     UserSearchView(Library library){
         JFrame frame = new JFrame("User Search Window");
         this.Frame = frame;
@@ -42,9 +41,9 @@ public class UserSearchView extends JFrame {
                 for(int i = 0; i < library.users.size(); i++) {
                     tempUser = library.getUserList().get(i);
                     tempID = tempUser.getID();
-                    if (textInt == tempID && e.getSource() == Button) {
+                    if (textInt == tempID && e.getSource() == searchUserButton) {
                         //library.getUserInfo(textInt);
-                        frame.dispose();
+                        Frame.dispose();
                         UserView user = new UserView(library);
                         flag = true;
                     }

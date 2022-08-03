@@ -7,14 +7,14 @@ public class AddItemView extends JFrame {
     private JFrame userFrame;
     private JPanel userPanel;
     private JButton addButton;
-    private JTextField textField;
+    private JTextField TextField;
 
     // "New Item"
     //  Name:
     //  Value:
     //  Able to loan
     //  AddItem Button
-    
+
     AddItemView() {
         JFrame frame = new JFrame("New Item");
         this.userFrame = frame;
@@ -25,37 +25,23 @@ public class AddItemView extends JFrame {
         this.userPanel = panel;
         userPanel.setLayout(new GridLayout(4, 1));
 
+        JTextField textField = new JTextField();
+        this.TextField = textField;
+        String text = TextField.getText();
+
         JButton Button = new JButton("Add Item");
         this.addButton = Button;
         Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == Button) {
-                    frame.dispose();
-
-
-                    JFrame frame1 = new JFrame("User Lookup");
-//                this.userFrame = frame;
-                    frame1.setSize(450, 550);
-                    frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-                    JPanel panel = new JPanel();
-                    //this.userPanel = userPanel;
-                    panel.setLayout(new GridLayout(4, 1));
-
-                    String text = textField.getText();
-                    JTextField textField = new JTextField();
-
-                    panel.add(textField);
-                    frame1.add(panel);
-                    frame1.setVisible(true);
+                if (e.getSource() == addButton) {
+                    userFrame.dispose();
                 }
             }
         });
 
-
         userPanel.add(addButton);
-        userFrame.add(panel);
+        userFrame.add(userPanel);
         userFrame.setVisible(true);
     }
 }

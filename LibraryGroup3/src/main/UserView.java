@@ -6,7 +6,10 @@ import java.awt.event.ActionListener;
 public class UserView extends JFrame {
     private JFrame userFrame;
     private JPanel userPanel;
-    private JButton searchButton;
+    private JButton checkOutButton;
+    private JButton payFineButton;
+    private JButton returnItemButton;
+    private JButton renewItemButton;
     private JTextField textField;
 
     //"User's Library Card"
@@ -21,7 +24,8 @@ public class UserView extends JFrame {
     //  Pay Fine Button
     //  Return Item Button
     //  Renew Item Button
-    
+
+
     UserView(Library library) {
         JFrame frame = new JFrame("'s Library Card");
         this.userFrame = frame;
@@ -32,36 +36,54 @@ public class UserView extends JFrame {
         this.userPanel = panel;
         userPanel.setLayout(new GridLayout(4, 1));
 
-        JButton Button = new JButton("Search");
-        this.searchButton = Button;
-        Button.addActionListener(new ActionListener() {
+        JButton checkoutButton = new JButton("Checkout Items");
+        this.checkOutButton = checkoutButton;
+        checkOutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == Button) {
-                    frame.dispose();
-
-
-                    JFrame frame1 = new JFrame("User Lookup");
-//                this.userFrame = frame;
-                    frame1.setSize(450, 550);
-                    frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-                    JPanel panel = new JPanel();
-                    //this.userPanel = userPanel;
-                    panel.setLayout(new GridLayout(4, 1));
-
-                    String text = textField.getText();
-                    JTextField textField = new JTextField();
-
-                    panel.add(textField);
-                    frame1.add(panel);
-                    frame1.setVisible(true);
+                if (e.getSource() == checkOutButton) {
+                    userFrame.dispose();
                 }
             }
         });
 
+        JButton fineButton = new JButton("Pay Fines");
+        this.payFineButton = fineButton;
+        payFineButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == payFineButton) {
+                    userFrame.dispose();
+                }
+            }
+        });
 
-        userPanel.add(searchButton);
+        JButton returnButton = new JButton("Return Items");
+        this.returnItemButton = returnButton;
+        returnItemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == returnItemButton) {
+                    userFrame.dispose();
+                }
+            }
+        });
+
+        JButton renewButton = new JButton("Renew Items");
+        this.renewItemButton = renewButton;
+        renewItemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == renewItemButton) {
+                    userFrame.dispose();
+                }
+            }
+        });
+
+        userPanel.add(checkOutButton);
+        userPanel.add(payFineButton);
+        userPanel.add(returnItemButton);
+        userPanel.add(renewItemButton);
         userFrame.add(userPanel);
         userFrame.setVisible(true);
     }
