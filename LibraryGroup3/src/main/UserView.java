@@ -50,6 +50,7 @@ public class UserView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == checkOutButton) {
                     userFrame.dispose();
+                    CheckOutView checkoutview = new CheckOutView(library);
                 }
             }
         });
@@ -59,6 +60,7 @@ public class UserView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == payFineButton) {
                     userFrame.dispose();
+                    PayFineView payfineview = new PayFineView(library);
                 }
             }
         });
@@ -68,6 +70,7 @@ public class UserView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == returnItemButton) {
                     userFrame.dispose();
+                    ReturnItemView returnitemview = new ReturnItemView(library);
                 }
             }
         });
@@ -77,6 +80,7 @@ public class UserView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == renewItemButton) {
                     userFrame.dispose();
+                    RenewItemView renewitemview = new RenewItemView(library);
                 }
             }
         });
