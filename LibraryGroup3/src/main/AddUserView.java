@@ -6,8 +6,15 @@ import java.awt.event.ActionListener;
 public class AddUserView extends JFrame {
     private JFrame userFrame;
     private JPanel userPanel;
+    private JLabel nameLabel = new JLabel("Name: ");
+    private JTextField nameField = new JTextField(10);
+    private JLabel addressLabel = new JLabel("Address: ");
+    private JTextField addressField = new JTextField(10);
+    private JLabel ageLabel = new JLabel("Age: ");
+    private JTextField ageField = new JTextField(10);
+    private JLabel phoneNumberLabel = new JLabel("Phone #: ");
+    private JTextField phoneNumberField = new JTextField(10);
     private JButton addButton;
-    private JTextField TextField;
 
     //  "New User"
     //  Name:
@@ -24,11 +31,11 @@ public class AddUserView extends JFrame {
 
         JPanel panel = new JPanel();
         this.userPanel = panel;
-        userPanel.setLayout(new GridLayout(4, 1));
+        userPanel.setLayout(new GridLayout(5, 1));
 
         JTextField textField = new JTextField();
-        this.TextField = textField;
-        String text = TextField.getText();
+//        this.TextField = textField;
+//        String text = TextField.getText();
 
         JButton Button = new JButton("Add User");
         this.addButton = Button;
@@ -41,6 +48,14 @@ public class AddUserView extends JFrame {
             }
         });
 
+        userPanel.add(nameLabel);
+        userPanel.add(nameField);
+        userPanel.add(addressLabel);
+        userPanel.add(addressField);
+        userPanel.add(ageLabel);
+        userPanel.add(ageField);
+        userPanel.add(phoneNumberLabel);
+        userPanel.add(phoneNumberField);
         userPanel.add(addButton);
         userFrame.add(userPanel);
         userFrame.setVisible(true);

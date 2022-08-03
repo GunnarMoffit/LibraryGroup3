@@ -6,6 +6,12 @@ import java.awt.event.ActionListener;
 public class AddItemView extends JFrame {
     private JFrame userFrame;
     private JPanel userPanel;
+    private JLabel nameLabel = new JLabel("Name: ");
+    private JTextField nameField = new JTextField(10);
+    private JLabel valueLabel = new JLabel("Value: ");
+    private JTextField valueField = new JTextField(10);
+    private JLabel loanabilityLabel = new JLabel("Able to loan: ");
+    private JTextField loanabilityField = new JTextField(10);
     private JButton addButton;
     private JTextField TextField;
 
@@ -40,6 +46,12 @@ public class AddItemView extends JFrame {
             }
         });
 
+        userPanel.add(nameLabel);
+        userPanel.add(nameField);
+        userPanel.add(valueLabel);
+        userPanel.add(valueField);
+        userPanel.add(loanabilityLabel);
+        userPanel.add(loanabilityField);
         userPanel.add(addButton);
         userFrame.add(userPanel);
         userFrame.setVisible(true);

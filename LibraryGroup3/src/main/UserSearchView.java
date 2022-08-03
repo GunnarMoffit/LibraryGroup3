@@ -10,12 +10,15 @@ public class UserSearchView extends JFrame {
     private JPanel Panel;
     private JButton searchUserButton;
     private JTextField TextField;
+    protected Library library;
 
     //"User Search Window"
     //  TextField
     //  Search Button
 
     UserSearchView(Library library){
+        this.library = library;
+
         JFrame frame = new JFrame("User Search Window");
         this.Frame = frame;
         Frame.setSize(400, 200);
@@ -33,15 +36,14 @@ public class UserSearchView extends JFrame {
         Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                User tempUser;
-                int tempID;
                 boolean flag = false;
                 for(int i = 0; i < library.users.size(); i++) {
+                    User tempUser;
+                    int tempID;
                     tempUser = library.getUserList().get(i);
                     tempID = tempUser.getID();
-                    int textInt = getUserID();     //parse int breaks it
+                    int textInt = Integer.parseInt(TextField.getText());
                     if (textInt == tempID && e.getSource() == searchUserButton) {
-                        //library.getUserInfo(textInt);
                         Frame.dispose();
                         UserView user = new UserView(library);
                         flag = true;
@@ -58,9 +60,4 @@ public class UserSearchView extends JFrame {
         Frame.add(Panel);
         Frame.setVisible(true);
     }
-
-    public int getUserID(){
-        return Integer.parseInt(TextField.getText());
-    }
-
 }

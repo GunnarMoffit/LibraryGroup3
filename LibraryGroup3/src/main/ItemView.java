@@ -6,8 +6,13 @@ import java.awt.event.ActionListener;
 public class ItemView extends JFrame {
     private JFrame itemFrame;
     private JPanel itemPanel;
+    private JLabel nameLabel = new JLabel("Name: ");
+    private JLabel valueLabel = new JLabel("Value: ");
+    private JLabel loanabilityLabel = new JLabel("Able to loan: ");
+    private JLabel availabilityLabel = new JLabel("Availability: ");
+    private JLabel requestedLabel = new JLabel("Requested: ");
+    private JLabel dueDateLabel = new JLabel("Date Due: ");
     private JButton okButton;
-    private JTextField textField;
 
     //"Item Description"
     //  Name:
@@ -26,7 +31,7 @@ public class ItemView extends JFrame {
 
         JPanel panel = new JPanel();
         this.itemPanel = panel;
-        itemPanel.setLayout(new GridLayout(4, 1));
+        itemPanel.setLayout(new GridLayout(7, 1));
 
         JButton Button = new JButton("Ok");
         this.okButton = Button;
@@ -39,6 +44,12 @@ public class ItemView extends JFrame {
             }
         });
 
+        itemPanel.add(nameLabel);
+        itemPanel.add(valueLabel);
+        itemPanel.add(loanabilityLabel);
+        itemPanel.add(availabilityLabel);
+        itemPanel.add(requestedLabel);
+        itemPanel.add(dueDateLabel);
         itemPanel.add(okButton);
         itemFrame.add(itemPanel);
         itemFrame.setVisible(true);
