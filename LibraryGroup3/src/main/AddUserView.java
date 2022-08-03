@@ -14,6 +14,7 @@ public class AddUserView extends JFrame {
     private JTextField ageField = new JTextField(10);
     private JLabel phoneNumberLabel = new JLabel("Phone #: ");
     private JTextField phoneNumberField = new JTextField(10);
+    private JButton menuButton = new JButton("Main Menu");
     private JButton addButton = new JButton("Add User");
     protected Library library;
 
@@ -22,6 +23,7 @@ public class AddUserView extends JFrame {
     //  Address:
     //  Age:
     //  Phone #:
+    //  Menu Button
     //  AddUser Button
 
     AddUserView(Library library) {
@@ -30,13 +32,24 @@ public class AddUserView extends JFrame {
         userFrame.setSize(450, 550);
         userFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        userPanel.setLayout(new GridLayout(5, 1));
+        userPanel.setLayout(new GridLayout(5, 2));
 
         //Text Field
         String name = nameField.getText();
         String address = addressField.getText();
         String age = ageField.getText();
         String phoneNumber = phoneNumberField.getText();
+
+        //Main Menu Button
+        menuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == menuButton) {
+                    userFrame.dispose();
+                    LibraryView libraryview = new LibraryView(library);
+                }
+            }
+        });
 
         //Add User Button
         addButton.addActionListener(new ActionListener() {
@@ -57,6 +70,7 @@ public class AddUserView extends JFrame {
         userPanel.add(ageField);
         userPanel.add(phoneNumberLabel);
         userPanel.add(phoneNumberField);
+        userPanel.add(menuButton);
         userPanel.add(addButton);
         userFrame.add(userPanel);
         userFrame.setVisible(true);
