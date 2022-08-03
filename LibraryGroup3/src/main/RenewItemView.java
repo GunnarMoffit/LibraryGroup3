@@ -28,6 +28,16 @@ public class RenewItemView extends JFrame {
 
         String text = TextField.getText();
 
+        //  RenewItem Button
+        renewItemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == renewItemButton) {
+                    Frame.dispose();
+                }
+            }
+        });
+
         //MainMenu Button
         mainMenuButton.addActionListener(new ActionListener() {
             @Override
