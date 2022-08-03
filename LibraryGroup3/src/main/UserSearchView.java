@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 import static java.lang.Integer.parseInt;
 
 public class UserSearchView extends JFrame {
-    private JFrame Frame;
-    private JPanel Panel;
-    private JButton searchUserButton;
-    private JTextField TextField;
+    private JFrame Frame = new JFrame("User Search Window");
+    private JPanel Panel = new JPanel();
+    private JButton searchUserButton = new JButton("Search");
+    private JTextField TextField = new JTextField();
     protected Library library;
 
     //"User Search Window"
@@ -19,21 +19,12 @@ public class UserSearchView extends JFrame {
     UserSearchView(Library library){
         this.library = library;
 
-        JFrame frame = new JFrame("User Search Window");
-        this.Frame = frame;
         Frame.setSize(400, 200);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel panel = new JPanel();
-        this.Panel = panel;
         Panel.setLayout(new GridLayout(2, 1));
 
-        JTextField textField = new JTextField();
-        this.TextField = textField;
-
-        JButton Button = new JButton("Search");
-        this.searchUserButton = Button;
-        Button.addActionListener(new ActionListener() {
+        searchUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boolean flag = false;

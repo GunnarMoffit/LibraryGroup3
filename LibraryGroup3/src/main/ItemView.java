@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ItemView extends JFrame {
-    private JFrame itemFrame;
+    private JFrame itemFrame = new JFrame("Item Description");
     private JPanel itemPanel;
     private JLabel nameLabel = new JLabel("Name: ");
     private JLabel valueLabel = new JLabel("Value: ");
@@ -12,7 +12,7 @@ public class ItemView extends JFrame {
     private JLabel availabilityLabel = new JLabel("Availability: ");
     private JLabel requestedLabel = new JLabel("Requested: ");
     private JLabel dueDateLabel = new JLabel("Date Due: ");
-    private JButton okButton;
+    private JButton okButton = new JButton("Ok");
 
     //"Item Description"
     //  Name:
@@ -24,8 +24,7 @@ public class ItemView extends JFrame {
     //  OK button to return to LibraryView()
 
     ItemView(Library library) {
-        JFrame frame = new JFrame("Item Description");
-        this.itemFrame = frame;
+
         itemFrame.setSize(450, 550);
         itemFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -33,9 +32,7 @@ public class ItemView extends JFrame {
         this.itemPanel = panel;
         itemPanel.setLayout(new GridLayout(7, 1));
 
-        JButton Button = new JButton("Ok");
-        this.okButton = Button;
-        Button.addActionListener(new ActionListener() {
+        okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == okButton) {

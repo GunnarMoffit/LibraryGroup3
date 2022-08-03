@@ -6,32 +6,24 @@ import java.awt.event.ActionListener;
 import static java.lang.Integer.parseInt;
 
 public class ItemSearchView extends JFrame {
-    private JFrame Frame;
-    private JPanel Panel;
-    private JButton searchButton;
-    private JTextField TextField;
+    private JFrame Frame = new JFrame("Item Search Window");
+    private JPanel Panel = new JPanel();
+    private JButton searchButton = new JButton("Search");
+    private JTextField TextField = new JTextField();
 
     //"Item Search Window"
     //  TextField
     //  Search Button
 
     ItemSearchView(Library library){
-        JFrame frame = new JFrame("Item Search Window");
-        this.Frame = frame;
         Frame.setSize(400, 200);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel panel = new JPanel();
-        this.Panel = panel;
         Panel.setLayout(new GridLayout(2, 1));
 
-        JTextField textField = new JTextField();
-        this.TextField = textField;
         String text = TextField.getText();
 
-        JButton button = new JButton("Search");
-        this.searchButton = button;
-        button.addActionListener(new ActionListener() {
+        searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Item tempItem;

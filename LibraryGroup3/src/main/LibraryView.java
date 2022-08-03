@@ -5,12 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LibraryView extends JFrame {
-    private JFrame homeFrame;
-    private JPanel homePanel;
-    private JButton UserInfoButton;
-    private JButton ItemInfoButton;
-    private JButton AddUserButton;
-    private JButton AddItemButton;
+    private JFrame homeFrame = new JFrame("Library System Window");
+    private JPanel homePanel = new JPanel();
+    private JButton UserInfoButton = new JButton("Lookup User Info");
+    private JButton ItemInfoButton = new JButton("Lookup Item Info");
+    private JButton AddUserButton = new JButton("Add User");
+    private JButton AddItemButton = new JButton("Add Item");
+
+    protected Library library;
 
     //"Library System Window"
     //  Lookup User Info Button
@@ -19,17 +21,13 @@ public class LibraryView extends JFrame {
     //  Add Item Button
 
     LibraryView(Library library) {
-        JFrame frame = new JFrame("Library System Window");
-        this.homeFrame = frame;
+        this.library = library;
+
         homeFrame.setSize(450, 550);
         homeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel panel = new JPanel();
-        this.homePanel = panel;
         homePanel.setLayout(new GridLayout(4, 1));
 
-        JButton userInfoButton = new JButton("Lookup User Info");
-        this.UserInfoButton = userInfoButton;
         UserInfoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -40,8 +38,6 @@ public class LibraryView extends JFrame {
             }
         });
 
-        JButton itemInfoButton = new JButton("Lookup Item Info");
-        this.ItemInfoButton = itemInfoButton;
         ItemInfoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,9 +48,7 @@ public class LibraryView extends JFrame {
             }
         });
 
-        JButton addUserButton = new JButton("Add User");
-        this.AddUserButton = addUserButton;
-        addUserButton.addActionListener(new ActionListener() {
+        AddUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == AddUserButton) {
@@ -64,9 +58,7 @@ public class LibraryView extends JFrame {
             }
         });
 
-        JButton addItemButton = new JButton("Add Item");
-        this.AddItemButton = addItemButton;
-        addItemButton.addActionListener(new ActionListener() {
+        AddItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == AddItemButton) {
