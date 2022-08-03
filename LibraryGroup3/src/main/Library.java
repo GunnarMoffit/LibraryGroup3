@@ -18,7 +18,7 @@ public class Library implements java.io.Serializable{
 	public ArrayList<Book> books;
 	public ArrayList<AudVid> audvids;
 	public ArrayList<Item> magrefs;
-	private int userID = 10001;
+	private int userID = 10000;;
     //Map containing Library Card #'s as keys, and User objects as values
     //HashMap<Integer, User> usersMap = new HashMap<>();
     //
@@ -39,9 +39,9 @@ public class Library implements java.io.Serializable{
     
 
     public void addUser(User x){
-        x.setID(userID);
+    	int a = userID + users.size();
+        x.setID(a);
     	users.add(x);
-        userID++;
     }
 
     public void addItem(Item y){
@@ -134,11 +134,7 @@ public class Library implements java.io.Serializable{
         }    	
 	
     }
-    
-    public void addBook(Book y){
-        books.add(y);
-    }
-
+   
 
     public void readBooks() {
     	String filename = "books.bin";
@@ -150,12 +146,65 @@ public class Library implements java.io.Serializable{
     		while(true) {
     			addBook((Book) in.readObject());
     		}
-
     			
     	}
     	catch(Exception e) {}
 
             
             System.out.println("Object has been deserialized ");
+    }
+    
+    public void addBook(Book y){
+        books.add(y);
+    }
+
+    public void writeUsers() {
+    	String filename = "users.bin";
+        // Serialization 
+        try
+        {   
+            //Saving of object in a file
+            FileOutputStream file = new FileOutputStream(filename);
+            ObjectOutputStream out = new ObjectOutputStream(file);
+              
+            for (User user : this.users) {
+            	out.writeObject(user);
+            }
+
+            out.close();
+            file.close();
+              
+            System.out.println("Object has been serialized");
+  
+        }
+          
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }    	
+	
+    }
+   
+
+    public void readUsers() {
+    	String filename = "users.bin";
+    	try
+        {   
+            // Reading the object from a file
+            FileInputStream file = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(file);
+    		while(true) {
+    			addUsers((User) in.readObject());
+    		}
+    			
+    	}
+    	catch(Exception e) {}
+
+            
+            System.out.println("Object has been deserialized ");
+    }
+    
+    public void addUsers(User y){
+        users.add(y);
     }
 }

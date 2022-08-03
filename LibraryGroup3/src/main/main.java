@@ -13,9 +13,17 @@ public static void main(String[] args) {            //Main set for testing loans
         
 		Library library = new Library();
 		
-        User userEx = new User("John", "11517 Flushwing Drive", "979-824-9001", 15);
+        //User user1 = new User("John", "11517 Flushwing Drive", "979-824-9001", 15);
+        //User user2 = new User("Annabel", "202 Mesquite Street", "979-841-1001", 8);
+        //User user3 = new User("Tom", "911 Hospital Lane", "999-954-1122", 98);
+        //User user4 = new User("Stacy", "11152 South Oak Valley Lane", "555-852-1325", 40);
+        //User user5 = new User("Rodrigo", "11517 Flushwing Drive", "979-824-9001", 15);
        
-        library.addUser(userEx);
+        //library.addUser(user1);
+        //library.addUser(user2);
+        //library.addUser(user3);
+        //library.addUser(user4);
+        //library.addUser(user5);
         
         
         //Book bookEx = new Book("Book 1", 9.55f, false);
@@ -71,14 +79,14 @@ public static void main(String[] args) {            //Main set for testing loans
     	boolean magReq = mag.isRequested();
     	boolean magAv = mag.isAvailable();
     	
-    	String name = userEx.getName();
-    	String address = userEx.getAddress();
-    	String phoneNumber = userEx.getPhoneNumber();
-    	int numItemsChecked = userEx.getNumItemsChecked();
-    	int age = userEx.getAge();
-    	int numItemsRequested = userEx.getNumItemsRequested();
-    	double fines = userEx.getFines();
-    	int ID = userEx.getID();
+    	//String name = userEx.getName();
+    	//String address = userEx.getAddress();
+    	//String phoneNumber = userEx.getPhoneNumber();
+    	//int numItemsChecked = userEx.getNumItemsChecked();
+    	//int age = userEx.getAge();
+    	//int numItemsRequested = userEx.getNumItemsRequested();
+    	//double fines = userEx.getFines();
+    	//int ID = userEx.getID();
         //System.out.println("");
         //System.out.println("Name: " + name);
         //System.out.println("Address: " + address);
@@ -101,16 +109,14 @@ public static void main(String[] args) {            //Main set for testing loans
         
         
         
-        library.readBooks();
+        library.readUsers();
         
-        for (Book book : library.books) {
-            System.out.println("Name: " + book.getName());
-            System.out.println("StartDate : " + book.getValue());
-            System.out.println("available : " + book.isAvailable());
-            System.out.println("bestsell : " + book.isBestSeller());
-            System.out.println("renew : " + book.isRenewed());
-            System.out.println("Request : " + book.isRequested());
-            System.out.println("Request : " + book.isloanable() + "\n");
+        for (User user : library.users) {
+            System.out.println("Name: " + user.getName());
+            System.out.println("ID #: " + user.getID());
+            System.out.println("Address: " + user.getAddress());
+            System.out.println("Phone: " + user.getPhoneNumber());
+            System.out.println("\n");
         }
     	//else {
     		//System.out.println("Class Name: " + classString + "\n");
