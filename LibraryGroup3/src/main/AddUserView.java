@@ -15,6 +15,7 @@ public class AddUserView extends JFrame {
     private JLabel phoneNumberLabel = new JLabel("Phone #: ");
     private JTextField phoneNumberField = new JTextField(10);
     private JButton addButton = new JButton("Add User");
+    protected Library library;
 
     //  "New User"
     //  Name:
@@ -23,7 +24,9 @@ public class AddUserView extends JFrame {
     //  Phone #:
     //  AddUser Button
 
-    AddUserView() {
+    AddUserView(Library library) {
+        this.library = library;
+
         userFrame.setSize(450, 550);
         userFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -41,6 +44,7 @@ public class AddUserView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == addButton) {
                     userFrame.dispose();
+                    LibraryView libraryview = new LibraryView(library);
                 }
             }
         });

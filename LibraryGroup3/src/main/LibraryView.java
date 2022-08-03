@@ -53,7 +53,7 @@ public class LibraryView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == AddUserButton) {
                     homeFrame.dispose();
-                    AddUserView user = new AddUserView();
+                    AddUserView user = new AddUserView(library);
                 }
             }
         });
@@ -63,7 +63,7 @@ public class LibraryView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == AddItemButton) {
                     homeFrame.dispose();
-                    AddItemView item = new AddItemView();
+                    AddItemView item = new AddItemView(library);
                 }
             }
         });

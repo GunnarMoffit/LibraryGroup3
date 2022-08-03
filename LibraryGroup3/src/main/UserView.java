@@ -17,6 +17,7 @@ public class UserView extends JFrame {
     private JButton payFineButton = new JButton("Pay Fines");
     private JButton returnItemButton = new JButton("Return Items");
     private JButton renewItemButton = new JButton("Renew Items");
+    private JButton mainMenuButton = new JButton("Main Menu");
     protected Library library;
 
     //"User's Library Card"
@@ -31,6 +32,7 @@ public class UserView extends JFrame {
     //  Pay Fine Button
     //  Return Item Button
     //  Renew Item Button
+    //  Main Menu Button
 
     UserView(Library library) {
         this.library = library;
@@ -38,7 +40,9 @@ public class UserView extends JFrame {
         userFrame.setSize(450, 550);
         userFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        userPanel.setLayout(new GridLayout(11, 1));
+        userPanel.setLayout(new GridLayout(12, 2));
+
+        //CheckedOutItems List
 
         //Buttons
         checkOutButton.addActionListener(new ActionListener() {
@@ -77,6 +81,16 @@ public class UserView extends JFrame {
             }
         });
 
+        mainMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == mainMenuButton) {
+                    userFrame.dispose();
+                    LibraryView libraryview = new LibraryView(library);
+                }
+            }
+        });
+
         userPanel.add(nameLabel);
         userPanel.add(ageLabel);
         userPanel.add(addressLabel);
@@ -89,6 +103,7 @@ public class UserView extends JFrame {
         userPanel.add(payFineButton);
         userPanel.add(returnItemButton);
         userPanel.add(renewItemButton);
+        userPanel.add(mainMenuButton);
         userFrame.add(userPanel);
         userFrame.setVisible(true);
     }

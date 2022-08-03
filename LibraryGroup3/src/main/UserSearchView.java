@@ -24,27 +24,38 @@ public class UserSearchView extends JFrame {
 
         Panel.setLayout(new GridLayout(2, 1));
 
+        //  Search Button
         searchUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean flag = false;
-                for(int i = 0; i < library.users.size(); i++) {
-                    User tempUser;
-                    int tempID;
-                    tempUser = library.getUserList().get(i);
-                    tempID = tempUser.getID();
-                    int textInt = Integer.parseInt(TextField.getText());
-                    if (textInt == tempID && e.getSource() == searchUserButton) {
-                        Frame.dispose();
-                        UserView user = new UserView(library);
-                        flag = true;
-                    }
-                    if(!flag) {
-                        JOptionPane.showMessageDialog(null, "Enter Valid Item Title");
-                    }
+                if (e.getSource() == searchUserButton) {
+                    Frame.dispose();
+                    UserView user = new UserView(library);
                 }
             }
         });
+
+//        searchUserButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                boolean flag = false;
+//                for(int i = 0; i < library.users.size(); i++) {
+//                    User tempUser;
+//                    int tempID;
+//                    tempUser = library.getUserList().get(i);
+//                    tempID = tempUser.getID();
+//                    int textInt = Integer.parseInt(TextField.getText());
+//                    if (textInt == tempID && e.getSource() == searchUserButton) {
+//                        Frame.dispose();
+//                        UserView user = new UserView(library);
+//                        flag = true;
+//                    }
+//                    if(!flag) {
+//                        JOptionPane.showMessageDialog(null, "Enter Valid Item Title");
+//                    }
+//                }
+//            }
+//        });
 
         Panel.add(TextField);
         Panel.add(searchUserButton);

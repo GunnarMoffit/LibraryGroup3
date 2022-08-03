@@ -13,6 +13,7 @@ public class AddItemView extends JFrame {
     private JLabel loanabilityLabel = new JLabel("Able to loan: ");
     private JTextField loanabilityField = new JTextField(10);
     private JButton addButton = new JButton("Add Item");
+    protected Library library;
 
     // "New Item"
     //  Name:
@@ -20,7 +21,9 @@ public class AddItemView extends JFrame {
     //  Able to loan
     //  AddItem Button
 
-    AddItemView() {
+    AddItemView(Library library) {
+        this.library = library;
+
         userFrame.setSize(450, 550);
         userFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -31,11 +34,13 @@ public class AddItemView extends JFrame {
         String address = valueField.getText();
         String age = loanabilityField.getText();
 
+        //Add Item Button
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == addButton) {
                     userFrame.dispose();
+                    LibraryView libraryview = new LibraryView(library);
                 }
             }
         });
