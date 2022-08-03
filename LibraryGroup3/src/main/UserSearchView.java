@@ -27,8 +27,6 @@ public class UserSearchView extends JFrame {
 
         JTextField textField = new JTextField();
         this.TextField = textField;
-        String text = TextField.getText();
-        int textInt = Integer.parseInt(text);     //parse int breaks it
 
         JButton Button = new JButton("Search");
         this.searchUserButton = Button;
@@ -41,6 +39,7 @@ public class UserSearchView extends JFrame {
                 for(int i = 0; i < library.users.size(); i++) {
                     tempUser = library.getUserList().get(i);
                     tempID = tempUser.getID();
+                    int textInt = getUserID();     //parse int breaks it
                     if (textInt == tempID && e.getSource() == searchUserButton) {
                         //library.getUserInfo(textInt);
                         Frame.dispose();
@@ -59,4 +58,9 @@ public class UserSearchView extends JFrame {
         Frame.add(Panel);
         Frame.setVisible(true);
     }
+
+    public int getUserID(){
+        return Integer.parseInt(TextField.getText());
+    }
+
 }
