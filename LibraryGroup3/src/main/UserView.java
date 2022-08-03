@@ -9,6 +9,19 @@ public class UserView extends JFrame {
     private JButton searchButton;
     private JTextField textField;
 
+    //"User's Library Card"
+    //  Name:
+    //  Age:
+    //  Address:
+    //  Phone Number:
+    //  Library Card Number:
+    //  Total Fines:
+    //  CheckedOutItems List
+    //  Checkout New Item Button
+    //  Pay Fine Button
+    //  Return Item Button
+    //  Renew Item Button
+    
     UserView(Library library) {
         JFrame frame = new JFrame("'s Library Card");
         this.userFrame = frame;

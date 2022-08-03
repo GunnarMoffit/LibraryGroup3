@@ -11,6 +11,10 @@ public class ItemSearchView extends JFrame {
     private JButton searchButton;
     private JTextField TextField;
 
+    //"Item Search Window"
+    //  TextField
+    //  Search Button
+    
     ItemSearchView(Library library){
         JFrame frame = new JFrame("Item Search Window");
         this.Frame = frame;

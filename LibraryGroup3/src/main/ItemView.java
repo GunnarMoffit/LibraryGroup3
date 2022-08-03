@@ -9,6 +9,15 @@ public class ItemView extends JFrame {
     private JButton searchButton;
     private JTextField textField;
 
+    //"Item Description"
+    //  Name:
+    //  Value:
+    //  Able to loan:
+    //  Availability:
+    //  Requested:
+    //  Date Due:
+    //  OK button to return to LibraryView()
+    
     ItemView(Library library) {
         JFrame frame = new JFrame("Item Description");
         this.userFrame = frame;

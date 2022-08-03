@@ -9,6 +9,13 @@ public class AddUserView extends JFrame {
     private JButton addButton;
     private JTextField textField;
 
+    //  "New User"
+    //  Name:
+    //  Address:
+    //  Age:
+    //  Phone #:
+    //  AddUser Button
+    
     AddUserView() {
         JFrame frame = new JFrame("New User");
         this.userFrame = frame;

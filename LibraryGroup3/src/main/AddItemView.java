@@ -9,6 +9,12 @@ public class AddItemView extends JFrame {
     private JButton addButton;
     private JTextField textField;
 
+    // "New Item"
+    //  Name:
+    //  Value:
+    //  Able to loan
+    //  AddItem Button
+    
     AddItemView() {
         JFrame frame = new JFrame("New Item");
         this.userFrame = frame;

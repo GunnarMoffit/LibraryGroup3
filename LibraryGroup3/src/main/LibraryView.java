@@ -11,6 +11,12 @@ public class LibraryView extends JFrame {
     private JButton addUserButton;
     private JButton addItemButton;
 
+    //"Library System Window"
+    //  Lookup User Info Button
+    //  Lookup Item Info Button
+    //  Add User Button
+    //  Add Item Button
+    
     LibraryView(Library library) {
         JFrame frame = new JFrame("Library System Window");
         this.homeFrame = frame;
