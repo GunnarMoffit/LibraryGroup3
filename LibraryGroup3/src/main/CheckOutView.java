@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
 public class CheckOutView extends JFrame {
     private JFrame Frame = new JFrame("Checkout Item Window");
     private JPanel Panel = new JPanel();
-    private JTextField TextField = new JTextField();
-    private JButton searchButton = new JButton("Search");
+    private JLabel label = new JLabel("Item List");
+    private JButton requestButton = new JButton("Request");
     private JButton checkoutButton = new JButton("Checkout");
     private JButton mainMenuButton = new JButton("Main Menu");
     protected Library library;
@@ -22,17 +22,23 @@ public class CheckOutView extends JFrame {
 
     CheckOutView(Library library){
         this.library = library;
+        DefaultListModel<String> model = new DefaultListModel<>();
+        JList<String> itemList = new JList<>(model);
+
+        for (Item item : library.items) {
+            model.addElement(item.getName());
+        }
 
         Frame.setSize(400, 200);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Panel.setLayout(new GridLayout(4, 1));
+        Panel.setLayout(new GridLayout(5, 1));
 
-        //TODO:Search Button
-        searchButton.addActionListener(new ActionListener() {
+        //TODO:Checkout Button
+        requestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == searchButton) {
+                if (e.getSource() == requestButton) {
                     Frame.dispose();
                 }
             }
@@ -59,11 +65,13 @@ public class CheckOutView extends JFrame {
             }
         });
 
-        Panel.add(TextField);
-        Panel.add(searchButton);
+        Panel.add(label);
+        Panel.add(itemList);
+        Panel.add(requestButton);
         Panel.add(checkoutButton);
         Panel.add(mainMenuButton);
         Frame.add(Panel);
+        Frame.setLocationRelativeTo(null);
         Frame.setVisible(true);
     }
 
