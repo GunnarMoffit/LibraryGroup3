@@ -15,6 +15,7 @@ public class AddItemView extends JFrame {
     private JButton menuButton = new JButton("Main Menu");
     private JButton addButton = new JButton("Add Item");
     protected Library library;
+    protected Item item;
 
     // "New Item"
     //  Name:
@@ -25,6 +26,7 @@ public class AddItemView extends JFrame {
 
     AddItemView(Library library) {
         this.library = library;
+        this.item = item;
 
         userFrame.setSize(450, 550);
         userFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,8 +35,8 @@ public class AddItemView extends JFrame {
 
         //Text Field
         String name = nameField.getText();
-        String address = valueField.getText();
-        String age = loanabilityField.getText();
+        String value = valueField.getText();
+        //String loanability = loanabilityField.getText();
 
         //Main Menu Button
         menuButton.addActionListener(new ActionListener() {
@@ -52,6 +54,8 @@ public class AddItemView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == addButton) {
+                    Item tempItem = new Item(name,Float.parseFloat(value));
+                    library.addItem(item);
                     userFrame.dispose();
                     LibraryView libraryview = new LibraryView(library);
                 }
@@ -67,6 +71,8 @@ public class AddItemView extends JFrame {
         userPanel.add(menuButton);
         userPanel.add(addButton);
         userFrame.add(userPanel);
+        userFrame.setLocationRelativeTo(null);
         userFrame.setVisible(true);
     }
 }
+

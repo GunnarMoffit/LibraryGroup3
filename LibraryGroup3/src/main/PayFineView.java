@@ -11,6 +11,7 @@ public class PayFineView extends JFrame {
     private JButton payFineButton = new JButton("Pay Fine");
     private JButton mainMenuButton = new JButton("Main Menu");
     protected Library library;
+    protected User user;
 
     //"Pay Fine Window"
     //  Total Fines:
@@ -18,19 +19,24 @@ public class PayFineView extends JFrame {
     //  PayFine Button
     //  MainMenu Button
 
-    PayFineView(Library library){
+    PayFineView(Library library, User user){
         this.library = library;
+        this.user = user;
 
         Frame.setSize(400, 200);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Panel.setLayout(new GridLayout(4, 1));
 
-        //TODO:PayFine Button
+        String text = TextField.getText();
+
+        //  TODO:PayFine Button
         payFineButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == payFineButton) {
+                    double fine = Double.parseDouble(text);
+                    user.payFines(fine);
                     Frame.dispose();
                 }
             }
@@ -52,6 +58,7 @@ public class PayFineView extends JFrame {
         Panel.add(payFineButton);
         Panel.add(mainMenuButton);
         Frame.add(Panel);
+        Frame.setLocationRelativeTo(null);
         Frame.setVisible(true);
     }
 

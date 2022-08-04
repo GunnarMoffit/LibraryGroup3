@@ -12,13 +12,13 @@ public class UserView extends JFrame {
     private JLabel libraryIdLabel = new JLabel("Library Card Number: ");
     private JLabel finesLabel = new JLabel("Total Fines: ");
     private JLabel numitemsCheckedOut = new JLabel("# Items Checked Out");
-    private JList<Item> checkedoutItemsList = new JList<>();
     private JButton checkOutButton = new JButton("Checkout Items");
     private JButton payFineButton = new JButton("Pay Fines");
     private JButton returnItemButton = new JButton("Return Items");
     private JButton renewItemButton = new JButton("Renew Items");
     private JButton mainMenuButton = new JButton("Main Menu");
     protected Library library;
+    protected User user;
 
     //"User's Library Card"
     //  Name:
@@ -36,6 +36,14 @@ public class UserView extends JFrame {
 
     UserView(Library library, User user) {
         this.library = library;
+        this.user = user;
+
+        DefaultListModel<String> model = new DefaultListModel<>();
+        JList<String> usersItemList = new JList<>(model);
+
+        for (String string : user.getItemsCheckedOut()) {
+            model.addElement(string);
+        }
 
         JLabel name = new JLabel(user.getName());
         JFrame userFrame = new JFrame(user.getName() + "'s Library Card");
@@ -60,7 +68,7 @@ public class UserView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == checkOutButton) {
                     userFrame.dispose();
-                    CheckOutView checkoutview = new CheckOutView(library);
+                    CheckOutView checkoutview = new CheckOutView(library, user);
                 }
             }
         });
@@ -70,7 +78,7 @@ public class UserView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == payFineButton) {
                     userFrame.dispose();
-                    PayFineView payfineview = new PayFineView(library);
+                    PayFineView payfineview = new PayFineView(library, user);
                 }
             }
         });
@@ -80,7 +88,7 @@ public class UserView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == returnItemButton) {
                     userFrame.dispose();
-                    ReturnItemView returnitemview = new ReturnItemView(library);
+                    ReturnItemView returnitemview = new ReturnItemView(library, user);
                 }
             }
         });
@@ -90,7 +98,7 @@ public class UserView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == renewItemButton) {
                     userFrame.dispose();
-                    RenewItemView renewitemview = new RenewItemView(library);
+                    RenewItemView renewitemview = new RenewItemView(library, user);
                 }
             }
         });
@@ -119,7 +127,7 @@ public class UserView extends JFrame {
         userPanel.add(fines);
         userPanel.add(numitemsCheckedOut);
         userPanel.add(chkOut);
-        userPanel.add(checkedoutItemsList);
+        userPanel.add(usersItemList);
         userPanel.add(checkOutButton);
         userPanel.add(payFineButton);
         userPanel.add(returnItemButton);

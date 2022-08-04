@@ -17,14 +17,22 @@ public class UserOverView {
     private JLabel finesLabel = new JLabel("Total Fines: ");
 
 
-    private JList<Item> checkedoutItemsList = new JList<>();
     private JButton LoginButton = new JButton("User Login");
     private JButton mainMenuButton = new JButton("Main Menu");
     protected Library library;
+    protected User user;
 
 
     UserOverView(Library library, User user) {
         this.library = library;
+        this.user = user;
+
+        DefaultListModel<String> model = new DefaultListModel<>();
+        JList<String> usersItemList = new JList<>(model);
+
+        for (String string : user.getItemsCheckedOut()) {
+            model.addElement(string);
+        }
 
         JLabel name = new JLabel(user.getName());
         JFrame userFrame = new JFrame(user.getName() + "'s Library Card");
@@ -76,7 +84,7 @@ public class UserOverView {
         userPanel.add(fines);
         userPanel.add(numitemsCheckedOut);
         userPanel.add(chkOut);
-        userPanel.add(checkedoutItemsList);
+        userPanel.add(usersItemList);
         userPanel.add(LoginButton);
         userPanel.add(mainMenuButton);
         userFrame.add(userPanel);

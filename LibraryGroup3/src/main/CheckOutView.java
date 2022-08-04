@@ -10,15 +10,11 @@ public class CheckOutView extends JFrame {
     private JPanel Panel = new JPanel();
     private JLabel label = new JLabel("Item List");
     private JButton requestButton = new JButton("Request");
-    private JButton checkoutButton = new JButton("Checkout");
     private JButton mainMenuButton = new JButton("Main Menu");
     protected Library library;
     protected User user;
 
     //"Checkout Item Window"
-    //  SearchItem TextField
-    //  SearchButton Button
-    //  CheckoutButton Button
     //  MainMenu Button
 
     CheckOutView(Library library, User user){
@@ -34,7 +30,7 @@ public class CheckOutView extends JFrame {
         Frame.setSize(400, 200);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Panel.setLayout(new GridLayout(5, 1));
+        Panel.setLayout(new GridLayout(4, 1));
 
         // TODO:Request Button
         requestButton.addActionListener(new ActionListener() {
@@ -53,16 +49,6 @@ public class CheckOutView extends JFrame {
             }
         });
 
-        // TODO:Checkout Button
-        checkoutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == checkoutButton) {
-                    Frame.dispose();
-                }
-            }
-        });
-
         //MainMenu Button
         mainMenuButton.addActionListener(new ActionListener() {
             @Override
@@ -77,7 +63,6 @@ public class CheckOutView extends JFrame {
         Panel.add(label);
         Panel.add(itemList);
         Panel.add(requestButton);
-        Panel.add(checkoutButton);
         Panel.add(mainMenuButton);
         Frame.add(Panel);
         Frame.setLocationRelativeTo(null);

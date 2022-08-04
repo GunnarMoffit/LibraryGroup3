@@ -17,6 +17,7 @@ public class AddUserView extends JFrame {
     private JButton menuButton = new JButton("Main Menu");
     private JButton addButton = new JButton("Add User");
     protected Library library;
+    protected User user;
 
     //  "New User"
     //  Name:
@@ -56,6 +57,8 @@ public class AddUserView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == addButton) {
+                    User tempUser = new User(name, address, age, Integer.parseInt(phoneNumber));
+                    library.addUser(tempUser);
                     userFrame.dispose();
                     LibraryView libraryview = new LibraryView(library);
                 }
@@ -73,6 +76,7 @@ public class AddUserView extends JFrame {
         userPanel.add(menuButton);
         userPanel.add(addButton);
         userFrame.add(userPanel);
+        userFrame.setLocationRelativeTo(null);
         userFrame.setVisible(true);
     }
 }
