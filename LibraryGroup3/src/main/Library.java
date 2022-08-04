@@ -19,7 +19,7 @@ public class Library implements java.io.Serializable{
 	public ArrayList<AudVid> audvids;
 	public ArrayList<Magazine> mags;
 	public ArrayList<ReferenceBook> refbooks;
-	private int userID = 10000;
+	private int userID = 10001;
     //Map containing Library Card #'s as keys, and User objects as values
     //HashMap<Integer, User> usersMap = new HashMap<>();
     //

@@ -14,6 +14,7 @@ public static void main(String[] args) {            //Main set for testing loans
         
 		Library library = new Library();
 		
+		library.readUsers();
         library.readMags();
         library.readRefBook();
         library.readAudVid();
@@ -151,8 +152,8 @@ public static void main(String[] args) {            //Main set for testing loans
         LibraryView libraryview = new LibraryView(library); 
 
         
-        for (Item item : library.items) {
-            System.out.println(item.getName());
+        for (User user : library.users) {
+        	library.getUserInfo(user.getID());
         }
 
     	//else {

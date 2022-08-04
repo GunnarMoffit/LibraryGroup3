@@ -62,6 +62,7 @@ public class UserSearchView extends JFrame {
         Panel.add(TextField);
         Panel.add(searchUserButton);
         Frame.add(Panel);
+        Frame.setLocationRelativeTo(null);
         Frame.setVisible(true);
     }
 }

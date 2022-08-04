@@ -55,6 +55,7 @@ public class AddItemView extends JFrame {
         userPanel.add(loanabilityField);
         userPanel.add(addButton);
         userFrame.add(userPanel);
+        userFrame.setLocationRelativeTo(null);
         userFrame.setVisible(true);
     }
 }

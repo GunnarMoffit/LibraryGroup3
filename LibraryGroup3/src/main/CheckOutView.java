@@ -66,6 +66,7 @@ public class CheckOutView extends JFrame {
         Panel.add(checkoutButton);
         Panel.add(mainMenuButton);
         Frame.add(Panel);
+        Frame.setLocationRelativeTo(null);
         Frame.setVisible(true);
     }
 

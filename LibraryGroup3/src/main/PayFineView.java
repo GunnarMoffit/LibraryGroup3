@@ -54,6 +54,7 @@ public class PayFineView extends JFrame {
         Panel.add(payFineButton);
         Panel.add(mainMenuButton);
         Frame.add(Panel);
+        Frame.setLocationRelativeTo(null);
         Frame.setVisible(true);
     }
 

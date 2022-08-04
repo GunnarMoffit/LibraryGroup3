@@ -56,6 +56,7 @@ public class ReturnItemView extends JFrame {
         Panel.add(returnItemButton);
         Panel.add(mainMenuButton);
         Frame.add(Panel);
+        Frame.setLocationRelativeTo(null);
         Frame.setVisible(true);
     }
 

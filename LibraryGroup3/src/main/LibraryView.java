@@ -15,11 +15,6 @@ public class LibraryView extends JFrame {
 
     protected Library library;
 
-    //"Library System Window"
-    //  Lookup User Info Button
-    //  Lookup Item Info Button
-    //  Add User Button
-    //  Add Item Button
 
     LibraryView(Library library) {
         this.library = library;
@@ -74,6 +69,7 @@ public class LibraryView extends JFrame {
         homePanel.add(AddUserButton);
         homePanel.add(AddItemButton);
         homeFrame.add(homePanel);
+        homeFrame.setLocationRelativeTo(null);
         homeFrame.setVisible(true);
     }
 }

@@ -61,6 +61,7 @@ public class AddUserView extends JFrame {
         userPanel.add(phoneNumberField);
         userPanel.add(addButton);
         userFrame.add(userPanel);
+        userFrame.setLocationRelativeTo(null);
         userFrame.setVisible(true);
     }
 }

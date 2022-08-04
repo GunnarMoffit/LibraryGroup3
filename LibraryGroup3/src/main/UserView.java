@@ -111,6 +111,7 @@ public class UserView extends JFrame {
         userPanel.add(renewItemButton);
         userPanel.add(mainMenuButton);
         userFrame.add(userPanel);
+        userFrame.setLocationRelativeTo(null);
         userFrame.setVisible(true);
     }
 }

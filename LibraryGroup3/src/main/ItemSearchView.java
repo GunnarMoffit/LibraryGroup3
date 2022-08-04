@@ -7,11 +7,16 @@ import java.awt.event.ActionListener;
 
 import static java.lang.Integer.parseInt;
 
-public class ItemSearchView extends JFrame {
+public class ItemSearchView extends JFrame{
     private JFrame Frame = new JFrame("Item Search Window");
     private JPanel Panel = new JPanel();
     private JButton searchButton = new JButton("Search");
     private JTextField TextField = new JTextField();
+    private JLabel typeLabel = new JLabel("Enter Item Name");
+    private JLabel chooseLabel = new JLabel("Or choose Item Type");
+    private JButton typeButton = new JButton("See list");
+    private String[] typeStrings = { "Books" , "Ref-Books", "Magazines", "AudVid" };
+    private JComboBox itemType = new JComboBox(typeStrings);
     protected Library library;
 
     //"Item Search Window"
@@ -19,49 +24,41 @@ public class ItemSearchView extends JFrame {
     //  Search Button
 
     ItemSearchView(Library library){
-        this.library = library;
-
-        Frame.setSize(400, 200);
+        
+    	this.library = library;
+        Frame.setSize(400, 100);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        Panel.setLayout(new GridLayout(2, 1));
-
-        //  Search Button
+        Panel.setLayout(new GridLayout(2,3));
+        Panel.add(typeLabel);
+        Panel.add(TextField);
+        Panel.add(searchButton);
+        Panel.add(chooseLabel);
+        Panel.add(itemType);
+        Panel.add(typeButton);
+        Frame.add(Panel);
+        
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == searchButton) {
-                    Frame.dispose();
-                    ItemView item = new ItemView(library);
-                }
-            }
+            	String txt = TextField.getText().toString();
+            	for (Item item : library.items) {
+            		if (txt.equals(item.getName())) {
+            			Frame.dispose();
+                        ItemView itemView = new ItemView(library, item);
+            		}		
+            	}
+            }   
         });
-
-//        searchButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Item tempItem;
-//                String tempName;
-//                boolean flag = false;
-//                for(int i = 0; i < library.items.size(); i++) {
-//                    tempItem = library.getItemList().get(i);
-//                    tempName = tempItem.getName();
-//                    String text = TextField.getText();
-//                    if (text.equals(tempName) && e.getSource() == searchButton) {
-//                        Frame.dispose();
-//                        ItemView item = new ItemView(library);
-//                        flag = true;
-//                    }
-//                    if(!flag) {
-//                        JOptionPane.showMessageDialog(null, "Enter Valid Item Title");
-//                    }
-//                }
-//            }
-//        });
-
-        Panel.add(TextField);
-        Panel.add(searchButton);
-        Frame.add(Panel);
-        Frame.setVisible(true);
-    }
+        
+        typeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	String selected = (String) itemType.getSelectedItem();
+            	System.out.println(selected);
+            }
+            
+        });
+        Frame.setLocationRelativeTo(null);
+        Frame.setVisible(true);        
+    }        
 }

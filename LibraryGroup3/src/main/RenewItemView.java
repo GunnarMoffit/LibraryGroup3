@@ -56,6 +56,7 @@ public class RenewItemView extends JFrame {
         Panel.add(renewItemButton);
         Panel.add(mainMenuButton);
         Frame.add(Panel);
+        Frame.setLocationRelativeTo(null);
         Frame.setVisible(true);
     }
 
