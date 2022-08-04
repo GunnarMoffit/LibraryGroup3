@@ -23,12 +23,12 @@ public static void main(String[] args) {            //Main set for testing loans
         
 		
         //User user1 = new User("John", "11517 Flushwing Drive", "979-824-9001", 15);
-        //User user2 = new User("Annabel", "202 Mesquite Street", "979-841-1001", 8);
+        User child = new User("Child", "202 Mesquite Street", "979-841-1001", 8);
         //User user3 = new User("Tom", "911 Hospital Lane", "999-954-1122", 98);
         //User user4 = new User("Stacy", "11152 South Oak Valley Lane", "555-852-1325", 40);
         //User user5 = new User("Rodrigo", "11517 Flushwing Drive", "979-824-9001", 15);
        
-        //library.addUser(user1);
+        library.addUser(child);
         //library.addUser(user2);
         //library.addUser(user3);
         //library.addUser(user4);

@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class LibraryView extends JFrame {
     private JFrame homeFrame = new JFrame("Library System Window");
     private JPanel homePanel = new JPanel();
-    private JButton UserInfoButton = new JButton("Lookup User Info");
+    private JButton UserInfoButton = new JButton("Lookup User");
     private JButton ItemInfoButton = new JButton("Lookup Item Info");
     private JButton AddUserButton = new JButton("Add User");
     private JButton AddItemButton = new JButton("Add Item");
@@ -29,7 +29,7 @@ public class LibraryView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == UserInfoButton) {
                     homeFrame.dispose();
-                    UserSearchView user = new UserSearchView(library);
+                    AllUserView allUser = new AllUserView(library);
                 }
             }
         });

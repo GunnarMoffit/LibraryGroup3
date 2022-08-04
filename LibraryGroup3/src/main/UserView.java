@@ -36,7 +36,7 @@ public class UserView extends JFrame {
     //  Renew Item Button
     //  Main Menu Button
 
-    UserView(Library library) {
+    UserView(Library library, User user) {
         this.library = library;
 
         userFrame.setSize(450, 550);
