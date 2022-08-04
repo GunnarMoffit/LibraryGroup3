@@ -61,5 +61,44 @@ public class ItemSearchView extends JFrame{
         });
         Frame.setLocationRelativeTo(null);
         Frame.setVisible(true);        
-    }        
+    }
+    ItemSearchView(Library library, User user){
+        
+    	this.library = library;
+        Frame.setSize(400, 100);
+        Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Panel.setLayout(new GridLayout(2,3));
+        Panel.add(typeLabel);
+        Panel.add(TextField);
+        Panel.add(searchButton);
+        Panel.add(chooseLabel);
+        Panel.add(itemType);
+        Panel.add(typeButton);
+        Frame.add(Panel);
+        
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	String txt = TextField.getText().toString();
+            	for (Item item : library.items) {
+            		if (txt.equals(item.getName())) {
+            			Frame.dispose();
+                        ItemView itemView = new ItemView(library, item, user);
+            		}		
+            	}
+            }   
+        });
+        
+        typeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	String selected = (String) itemType.getSelectedItem();
+            	Frame.dispose();
+            	ItemCatView itemCatView = new ItemCatView(library, selected, user);
+            }
+            
+        });
+        Frame.setLocationRelativeTo(null);
+        Frame.setVisible(true);        
+    }
 }

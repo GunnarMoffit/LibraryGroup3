@@ -64,7 +64,7 @@ public class Library implements java.io.Serializable{
         	mags.add((Magazine) y);
         }
         items.add(y);
-        	
+	
     }
 
     public ArrayList<User> getUserList(){
@@ -390,4 +390,58 @@ public class Library implements java.io.Serializable{
     		items.add(av);
     	}
     }
+    
+    public void update(Item item) {
+    	Book bookEx = new Book("1", 9.55f, false);
+    	AudVid avEx = new AudVid("1", 1.50f);
+    	ReferenceBook refBook = new ReferenceBook("Map", 3.85f);
+        Magazine mag = new Magazine("Ex", 19.99f);
+        
+    	for (Item x : this.items) {
+    		if (item.getName().equals(x.getName())) {
+    			int idx = this.items.indexOf(x);
+    			this.items.set(idx, item);
+    		}
+    	}   		
+    	if (item.getClass() == bookEx.getClass()) {
+    		for (Book x : this.books) {
+    			if (item.getName().equals(x.getName())) {
+    				int idx = this.books.indexOf(x);
+    				this.books.set(idx,(Book) item);
+    			}
+    		}
+    	}
+    	else if (item.getClass() == avEx.getClass()) {
+    		for (AudVid x : this.audvids) {
+    			if (item.getName().equals(x.getName())) {
+    				int idx = this.items.indexOf(x);
+    				this.audvids.set(idx,(AudVid) item);
+    			}
+    		}
+    	}
+    	else if (item.getClass() == refBook.getClass()) {
+    		for (ReferenceBook x : this.refbooks) {
+    			if (item.getName().equals(x.getName())) {
+    				int idx = this.refbooks.indexOf(x);
+    				this.refbooks.set(idx,(ReferenceBook) item);
+    			}
+    		}
+    	}
+    	else {
+    		for (Magazine x : this.mags) {
+    			if (item.getName().equals(x.getName())) {
+    				int idx = this.mags.indexOf(x);
+    				this.mags.set(idx,(Magazine) item);
+    			}
+    		}
+    	}
+    }
+    public void update(User user) {      
+    	for (User x : this.users) {
+    		if (user.getName().equals(x.getName())) {
+    			int idx = this.users.indexOf(x);
+    			this.users.set(idx, user);
+    		}
+    	}   		
+    } 	
 }

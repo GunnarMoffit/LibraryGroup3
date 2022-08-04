@@ -117,7 +117,8 @@ public class User implements java.io.Serializable {
 		this.fines = this.fines - x;
 	}
 	
-	public String requestItem(Item item) {
+	public String requestItem(Library library, Item item, User user) {
+		
 		String message = "Error";
 		if (this.age <= 12) {
 			if (this.ItemsCheckedOut.size() == 5) {
@@ -138,7 +139,9 @@ public class User implements java.io.Serializable {
 			item.setRequested(false);
 			this.addItemRequested(item);
 			message = "This item is not avaiable, Item is now Requested";
-		}		
+		}
+		library.update(item);
+		library.update(user);
 		return message;
 	}
 	
@@ -155,4 +158,5 @@ public class User implements java.io.Serializable {
 		String message = "Item Checkedd in";
 		return message;
 	}
+	
 }

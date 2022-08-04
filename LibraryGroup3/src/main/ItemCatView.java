@@ -20,7 +20,7 @@ public class ItemCatView {
 
 
     ItemCatView(Library library, String x){
-        this.library = library;
+
         DefaultListModel<String> model = new DefaultListModel<>();
         JList<String> catList = new JList<>(model);
         if (x.equals("Books")){
@@ -59,6 +59,72 @@ public class ItemCatView {
                 		if (txt.equals(item.getName())) {
                 			Frame.dispose();
                             ItemView itemView = new ItemView(library, item);
+                		}
+                	}
+                }
+            }         	
+        });
+
+        //MainMenu Button
+        mainMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == mainMenuButton) {
+                    Frame.dispose();
+                    LibraryView libraryview = new LibraryView(library);
+                }
+            }
+        });
+
+        Panel.add(label);
+        Panel.add(catList);
+        Panel.add(viewSelectButton);
+        Panel.add(mainMenuButton);
+        Frame.add(Panel);
+        Frame.setLocationRelativeTo(null);
+        Frame.setVisible(true);
+    }
+    
+    ItemCatView(Library library, String x, User user){
+        this.library = library;
+        DefaultListModel<String> model = new DefaultListModel<>();
+        JList<String> catList = new JList<>(model);
+        if (x.equals("Books")){
+        	for (Book book : library.books) {
+        		model.addElement(book.getName());
+        	}
+        }
+        else if (x.equals("AudVid")) {
+        	for (AudVid av : library.audvids) {
+        		model.addElement(av.getName());
+        	}
+        }
+        else if (x.equals("Ref-Books")) {
+        	for (ReferenceBook refbook : library.refbooks) {
+        		model.addElement(refbook.getName());
+        	}
+        }
+        else {
+        	for (Magazine mag : library.mags) {
+        		model.addElement(mag.getName());
+        	}
+        }
+ 
+    
+        Frame.setSize(300, 400);
+        Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //Panel.setLayout(new GridLayout(4, 1));
+
+        viewSelectButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == viewSelectButton) {
+                	String txt = catList.getSelectedValue();
+                	for (Item item : library.items) {
+                		if (txt.equals(item.getName())) {
+                			Frame.dispose();
+                            ItemView itemView = new ItemView(library, item, user);
                 		}
                 	}
                 }

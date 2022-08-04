@@ -24,11 +24,10 @@ public class UserOverView {
     private JList<Item> checkedoutItemsList = new JList<>();
     private JButton LoginButton = new JButton("User Login");
     private JButton mainMenuButton = new JButton("Main Menu");
-    protected Library library;
+
 
 
     UserOverView(Library library, User user) {
-        this.library = library;
         
         JLabel name = new JLabel(user.getName());
         JLabel age = new JLabel(Integer.toString(user.getAge()));

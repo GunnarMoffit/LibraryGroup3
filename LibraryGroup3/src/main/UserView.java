@@ -62,7 +62,7 @@ public class UserView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == checkOutButton) {
                     userFrame.dispose();
-                    CheckOutView checkoutview = new CheckOutView(library);
+                    ItemSearchView itemSearchView = new ItemSearchView(library, user);
                 }
             }
         });
