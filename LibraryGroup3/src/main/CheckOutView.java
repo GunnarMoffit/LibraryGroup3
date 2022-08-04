@@ -13,6 +13,7 @@ public class CheckOutView extends JFrame {
     private JButton checkoutButton = new JButton("Checkout");
     private JButton mainMenuButton = new JButton("Main Menu");
     protected Library library;
+    protected User user;
 
     //"Checkout Item Window"
     //  SearchItem TextField
@@ -20,8 +21,9 @@ public class CheckOutView extends JFrame {
     //  CheckoutButton Button
     //  MainMenu Button
 
-    CheckOutView(Library library){
+    CheckOutView(Library library, User user){
         this.library = library;
+        this.user = user;
         DefaultListModel<String> model = new DefaultListModel<>();
         JList<String> itemList = new JList<>(model);
 
@@ -34,17 +36,24 @@ public class CheckOutView extends JFrame {
 
         Panel.setLayout(new GridLayout(5, 1));
 
-        //TODO:Checkout Button
+        // TODO:Request Button
         requestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == requestButton) {
-                    Frame.dispose();
+                    String txt = itemList.getSelectedValue();
+                    for(Item item : library.items) {
+                        if(txt.equals(item.getName())) {
+                            user.requestItem(item);
+                            Frame.dispose();
+                            UserView userview = new UserView(library, user);
+                        }
+                    }
                 }
             }
         });
 
-        //TODO:Checkout Button
+        // TODO:Checkout Button
         checkoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
