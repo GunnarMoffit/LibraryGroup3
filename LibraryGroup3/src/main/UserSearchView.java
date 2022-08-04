@@ -43,35 +43,15 @@ public class UserSearchView extends JFrame {
         searchUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == searchUserButton) {
-                    Frame.dispose();
-                    UserView user = new UserView(library);
+                String txt = TextField.getText().toString();
+                for (User user : library.users) {
+                    if (txt.equals(user.getName()) && e.getSource() == searchUserButton) {
+                        Frame.dispose();
+                        UserOverView userView = new UserOverView(library, user);
+                    }
                 }
             }
         });
-
-//        searchUserButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                boolean flag = false;
-//                for(int i = 0; i < library.users.size(); i++) {
-//                    User tempUser;
-//                    int tempID;
-//                    tempUser = library.getUserList().get(i);
-//                    tempID = tempUser.getID();
-//                    int textInt = Integer.parseInt(TextField.getText());
-//                    if (textInt == tempID && e.getSource() == searchUserButton) {
-//                        Frame.dispose();
-//                        UserView user = new UserView(library);
-//                        flag = true;
-//                    }
-//                    if(!flag) {
-//                        JOptionPane.showMessageDialog(null, "Enter Valid Item Title");
-//                    }
-//                }
-//            }
-//        });
-
 
         Panel.add(textLabel);
         Panel.add(TextField);

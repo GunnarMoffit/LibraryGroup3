@@ -33,7 +33,7 @@ public class LibraryView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == UserInfoButton) {
                     homeFrame.dispose();
-                    UserSearchView user = new UserSearchView(library);
+                    AllUserView user = new AllUserView(library);
                 }
             }
         });

@@ -9,9 +9,13 @@ public class ItemSearchView extends JFrame {
     private JFrame Frame = new JFrame("Item Search Window");
     private JPanel Panel = new JPanel();
     private JButton searchButton = new JButton("Search");
-    private JLabel textLabel = new JLabel("Enter Item:");
-    private JButton menuButton = new JButton("Main Menu");
     private JTextField TextField = new JTextField();
+    private JLabel textLabel = new JLabel("Enter Item Name:");
+    private JLabel chooseLabel = new JLabel("Or choose Item Type");
+    private JButton typeButton = new JButton("See list");
+    private String[] typeStrings = { "Books" , "Ref-Books", "Magazines", "AudVid" };
+    private JComboBox itemType = new JComboBox(typeStrings);
+    private JButton menuButton = new JButton("Main Menu");
     protected Library library;
 
     //"Item Search Window"
@@ -21,14 +25,21 @@ public class ItemSearchView extends JFrame {
     //  Search Button
 
     ItemSearchView(Library library){
+
         this.library = library;
-
-        Frame.setSize(400, 200);
+        Frame.setSize(500, 200);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Panel.setLayout(new GridLayout(2, 4));
+        Panel.add(textLabel);
+        Panel.add(TextField);
+        Panel.add(searchButton);
+        Panel.add(menuButton);
+        Panel.add(chooseLabel);
+        Panel.add(itemType);
+        Panel.add(typeButton);
+        Frame.add(Panel);
 
-        Panel.setLayout(new GridLayout(2, 2));
-
-        //Main Menu Button
+        //  Main Menu Button
         menuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,40 +54,29 @@ public class ItemSearchView extends JFrame {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == searchButton) {
-                    Frame.dispose();
-                    ItemView item = new ItemView(library);
+                String txt = TextField.getText().toString();
+                for (Item item : library.items) {
+                    if (txt.equals(item.getName()) && e.getSource() == searchButton) {
+                        Frame.dispose();
+                        ItemView itemView = new ItemView(library, item);
+                    }
                 }
             }
         });
 
-//        searchButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Item tempItem;
-//                String tempName;
-//                boolean flag = false;
-//                for(int i = 0; i < library.items.size(); i++) {
-//                    tempItem = library.getItemList().get(i);
-//                    tempName = tempItem.getName();
-//                    String text = TextField.getText();
-//                    if (text.equals(tempName) && e.getSource() == searchButton) {
-//                        Frame.dispose();
-//                        ItemView item = new ItemView(library);
-//                        flag = true;
-//                    }
-//                    if(!flag) {
-//                        JOptionPane.showMessageDialog(null, "Enter Valid Item Title");
-//                    }
-//                }
-//            }
-//        });
+        //  List Type Button
+        typeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selected = (String) itemType.getSelectedItem();
+                Frame.dispose();
+                ItemCatView itemCatView = new ItemCatView(library, selected);
+            }
 
-        Panel.add(textLabel);
-        Panel.add(TextField);
-        Panel.add(menuButton);
-        Panel.add(searchButton);
-        Frame.add(Panel);
+        });
+
+
+        Frame.setLocationRelativeTo(null);
         Frame.setVisible(true);
     }
 }
