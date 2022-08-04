@@ -44,7 +44,7 @@ public class CheckOutView extends JFrame {
                     String txt = itemList.getSelectedValue();
                     for(Item item : library.items) {
                         if(txt.equals(item.getName())) {
-                            user.requestItem(item);
+                            JOptionPane.showMessageDialog(null, user.requestItem(item));
                             Frame.dispose();
                             UserView userview = new UserView(library, user);
                         }
