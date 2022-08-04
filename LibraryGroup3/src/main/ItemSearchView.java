@@ -54,7 +54,8 @@ public class ItemSearchView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
             	String selected = (String) itemType.getSelectedItem();
-            	System.out.println(selected);
+            	Frame.dispose();
+            	ItemCatView itemCatView = new ItemCatView(library, selected);
             }
             
         });

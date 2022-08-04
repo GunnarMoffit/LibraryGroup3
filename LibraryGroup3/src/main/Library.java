@@ -388,8 +388,6 @@ public class Library implements java.io.Serializable{
     	}
     	for (AudVid av : this.audvids) {
     		items.add(av);
-    	}	
+    	}
     }
-    
-    
 }
