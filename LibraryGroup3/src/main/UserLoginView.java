@@ -9,6 +9,7 @@ import static java.lang.Integer.parseInt;
 
 public class UserLoginView extends JFrame {
     private JFrame Frame = new JFrame("User Search Window");
+    private JLabel inputLabel = new JLabel("Please Enter your ID#");
     private JPanel Panel = new JPanel();
     private JButton searchUserButton = new JButton("Login");
     private JTextField TextField = new JTextField(10);
@@ -22,20 +23,20 @@ public class UserLoginView extends JFrame {
     	User x = user;
         this.library = library;
         int correctID = user.getID();
-        int input = getTextField();
-        Frame.setSize(400, 100);
+        Frame.setSize(150, 150);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Panel.setLayout(new GridLayout(2, 1));
+        Panel.setLayout(new GridLayout(3, 1));
 
         //  Search Button
         searchUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == searchUserButton) {
+                	int input = parseInt(TextField.getText());
                 	if (input == correctID) {
                 		Frame.dispose();
-                		UserView userView = new UserView(library, x);
+                		UserView userView = new UserView(library, user);
                 	}
                 	else {
                         Frame.dispose();
@@ -47,7 +48,7 @@ public class UserLoginView extends JFrame {
         });
 
         
-
+        Panel.add(inputLabel);
         Panel.add(TextField);
         Panel.add(searchUserButton);
         Frame.add(Panel);
@@ -55,9 +56,4 @@ public class UserLoginView extends JFrame {
         Frame.setVisible(true);
     }
     
-	public int getTextField(){
-		
-		return Integer.parseInt(TextField.getText());
-		
-	}
 }

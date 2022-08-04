@@ -17,8 +17,9 @@ public class UserOverView {
     private JLabel addressLabel = new JLabel("Address: ");
     private JLabel phoneLabel = new JLabel("Phone Number: ");
     private JLabel libraryIdLabel = new JLabel("Library Card Number: ");
-    private JLabel itemsCheckedOut = new JLabel("Items Checked Out", SwingConstants.CENTER);
+    private JLabel numitemsCheckedOut = new JLabel("# Items Checked Out");
     private JLabel finesLabel = new JLabel("Total Fines: ");
+    
     
     private JList<Item> checkedoutItemsList = new JList<>();
     private JButton LoginButton = new JButton("User Login");
@@ -36,6 +37,7 @@ public class UserOverView {
         JLabel libraryId = new JLabel(Integer.toString(user.getID()));
         String currentFines = Double.toString(user.getFines());
         JLabel fines = new JLabel(currentFines);
+        JLabel chkOut = new JLabel(Integer.toString(user.getNumItemsChecked()));
 
         userFrame.setSize(450, 550);
         userFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,7 +77,8 @@ public class UserOverView {
         userPanel.add(libraryId);
         userPanel.add(finesLabel);
         userPanel.add(fines);
-        userPanel.add(itemsCheckedOut);
+        userPanel.add(numitemsCheckedOut);
+        userPanel.add(chkOut);
         userPanel.add(checkedoutItemsList);
         userPanel.add(LoginButton);
         userPanel.add(mainMenuButton);

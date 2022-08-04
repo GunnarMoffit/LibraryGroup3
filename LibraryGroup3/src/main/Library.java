@@ -168,7 +168,7 @@ public class Library implements java.io.Serializable{
     	catch(Exception e) {}
 
             
-            System.out.println("Object has been deserialized ");
+            //System.out.println("Object has been deserialized ");
     }
     
     public void addBook(Book y){
@@ -218,7 +218,7 @@ public class Library implements java.io.Serializable{
     	catch(Exception e) {}
 
             
-            System.out.println("Object has been deserialized ");
+            //System.out.println("Object has been deserialized ");
     }
     
     public void addUsers(User y){
@@ -268,7 +268,7 @@ public class Library implements java.io.Serializable{
     	catch(Exception e) {}
 
             
-            System.out.println("Object has been deserialized ");
+            //System.out.println("Object has been deserialized ");
     }
     
     public void addAudVid(AudVid y){
@@ -318,7 +318,7 @@ public class Library implements java.io.Serializable{
     	catch(Exception e) {}
 
             
-            System.out.println("Object has been deserialized ");
+            //System.out.println("Object has been deserialized ");
     }
     
     public void addMags(Magazine y){
@@ -369,7 +369,7 @@ public class Library implements java.io.Serializable{
     	catch(Exception e) {}
 
             
-            System.out.println("Object has been deserialized ");
+            //System.out.println("Object has been deserialized ");
     }
     
     public void addRefBook(ReferenceBook y){

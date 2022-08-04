@@ -23,23 +23,34 @@ public static void main(String[] args) {            //Main set for testing loans
         
 		
         //User user1 = new User("John", "11517 Flushwing Drive", "979-824-9001", 15);
-        User child = new User("Child", "202 Mesquite Street", "979-841-1001", 8);
+        //User child = new User("Child", "202 Mesquite Street", "979-841-1001", 8);
         //User user3 = new User("Tom", "911 Hospital Lane", "999-954-1122", 98);
         //User user4 = new User("Stacy", "11152 South Oak Valley Lane", "555-852-1325", 40);
         //User user5 = new User("Rodrigo", "11517 Flushwing Drive", "979-824-9001", 15);
        
-        library.addUser(child);
+        //library.addUser(child);
         //library.addUser(user2);
         //library.addUser(user3);
         //library.addUser(user4);
         //library.addUser(user5);
         
         
-        //Book bookEx = new Book("Gone with the Wind", 12.19f, false);
-        //Book book1 = new Book("Harry Potter: The Deathly Hallows", 18.90f, false);
-        //Book book2 = new Book("Verity", 16.78f, true);
-        //Book book3 = new Book("A Tale of Two Cities", 7.00f, false);
-        //Book book4 = new Book("Elmo", 9.55f, false);
+        //Book book5 = new Book("General Book", 12.19f, false);
+        //Book book6 = new Book("Best Seller", 18.90f, true);
+        //Book book7 = new Book("Late31 - $16", 16.78f, false);
+        //Book book8 = new Book("Late31 - $2.05", 2.05f, false);
+        //Book book9 = new Book("fullChild", 9.55f, false);
+        //Book book10 = new Book("childExcess", 9.55f, false);
+        
+        //library.addItem(book5);
+        //library.addItem(book6);
+        //library.addItem(book7);
+        //library.addItem(book8);
+        //library.addItem(book9);
+        //library.addItem(book10);
+        
+
+        
         
         //AudVid avEx = new AudVid("The Prince's new Groove", 8.90f);
 		//AudVid av1 = new AudVid("The Princess Bride", 6.89f);
@@ -152,13 +163,11 @@ public static void main(String[] args) {            //Main set for testing loans
         LibraryView libraryview = new LibraryView(library); 
 
         
-        for (User user : library.users) {
-        	library.getUserInfo(user.getID());
-        }
-
-    	//else {
-    		//System.out.println("Class Name: " + classString + "\n");
-    	//}
+		//library.writeUsers();
+        //library.writeMags();
+        //library.writeRefBook();
+        //library.writeAudVid();
+        //library.writeBooks();
 
     }
 

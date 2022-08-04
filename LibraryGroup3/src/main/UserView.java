@@ -14,6 +14,7 @@ public class UserView extends JFrame {
     private JLabel phoneLabel = new JLabel("Phone Number: ");
     private JLabel libraryIdLabel = new JLabel("Library Card Number: ");
     private JLabel finesLabel = new JLabel("Total Fines: ");
+    private JLabel numitemsCheckedOut = new JLabel("# Items Checked Out");
     private JList<Item> checkedoutItemsList = new JList<>();
     private JButton checkOutButton = new JButton("Checkout Items");
     private JButton payFineButton = new JButton("Pay Fines");
@@ -38,6 +39,15 @@ public class UserView extends JFrame {
 
     UserView(Library library, User user) {
         this.library = library;
+        
+        JLabel name = new JLabel(user.getName());
+        JLabel age = new JLabel(Integer.toString(user.getAge()));
+        JLabel address = new JLabel(user.getAddress());
+        JLabel phone = new JLabel(user.getPhoneNumber());
+        JLabel libraryId = new JLabel(Integer.toString(user.getID()));
+        String currentFines = Double.toString(user.getFines());
+        JLabel fines = new JLabel(currentFines);
+        JLabel chkOut = new JLabel(Integer.toString(user.getNumItemsChecked()));
 
         userFrame.setSize(450, 550);
         userFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,12 +108,19 @@ public class UserView extends JFrame {
         });
 
         userPanel.add(nameLabel);
+        userPanel.add(name);
         userPanel.add(ageLabel);
+        userPanel.add(age);
         userPanel.add(addressLabel);
+        userPanel.add(address);
         userPanel.add(phoneLabel);
+        userPanel.add(phone);
         userPanel.add(libraryIdLabel);
+        userPanel.add(libraryId);
         userPanel.add(finesLabel);
-        userPanel.add(ageLabel);
+        userPanel.add(fines);
+        userPanel.add(numitemsCheckedOut);
+        userPanel.add(chkOut);
         userPanel.add(checkedoutItemsList);
         userPanel.add(checkOutButton);
         userPanel.add(payFineButton);

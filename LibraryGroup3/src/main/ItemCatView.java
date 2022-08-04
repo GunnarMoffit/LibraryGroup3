@@ -45,7 +45,7 @@ public class ItemCatView {
         }
  
     
-        Frame.setSize(300, 200);
+        Frame.setSize(300, 400);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Panel.setLayout(new GridLayout(4, 1));
