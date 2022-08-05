@@ -133,6 +133,10 @@ public class User implements java.io.Serializable {
                 this.addItemChecked(item);
                 this.remItemRequested(item);
                 message ="Item has been checked out";
+            } else {
+                item.setRequested(true);
+                this.addItemRequested(item);
+                message = "This item is not available, Item is now Requested";
             }
             return message;
         }
@@ -155,8 +159,14 @@ public class User implements java.io.Serializable {
     }
 
     public String renewItem(Item item) {
-        String message = item.loan.setRenewed(item);
-        return message;
+        if(!item.isRequested()) {
+            String message = item.loan.setRenewed(item);
+            return message;
+        } else {
+            String message = "Item is requested, please return by " + item.loan.getDueDate();
+            return message;
+        }
+
     }
 
     public String checkInItem(Item item) {
@@ -164,6 +174,7 @@ public class User implements java.io.Serializable {
         item.loan.remLoanData(item);
         this.remItemChecked(item);
         item.setAvailable(true);
+        item.setRequested(false);
         String message = "Item Checked in";
         return message;
     }
