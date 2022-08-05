@@ -23,7 +23,7 @@ public class PayFineView extends JFrame {
         this.library = library;
         this.user = user;
 
-        Frame.setSize(400, 200);
+        Frame.setSize(400, 250);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Panel.setLayout(new GridLayout(4, 1));

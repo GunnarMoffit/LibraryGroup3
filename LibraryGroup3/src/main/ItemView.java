@@ -3,6 +3,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+public class ItemView extends JFrame import javax.swing.*;
+        import java.awt.*;
+        import java.awt.event.ActionEvent;
+        import java.awt.event.ActionListener;
+
 public class ItemView extends JFrame {
     private JFrame itemFrame = new JFrame("Item Description");
     private JPanel itemPanel = new JPanel();

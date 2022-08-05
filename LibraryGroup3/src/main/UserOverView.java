@@ -14,6 +14,7 @@ public class UserOverView {
     private JLabel phoneLabel = new JLabel("Phone Number: ");
     private JLabel libraryIdLabel = new JLabel("Library Card Number: ");
     private JLabel numitemsCheckedOut = new JLabel("# Items Checked Out");
+    private JLabel checkedOutItemsLabel = new JLabel("Checked Out:");
     private JLabel finesLabel = new JLabel("Total Fines: ");
 
 
@@ -33,6 +34,9 @@ public class UserOverView {
         for (String string : user.getItemsCheckedOut()) {
             model.addElement(string);
         }
+
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(usersItemList);
 
         JLabel name = new JLabel(user.getName());
         JFrame userFrame = new JFrame(user.getName() + "'s Library Card");
@@ -84,7 +88,8 @@ public class UserOverView {
         userPanel.add(fines);
         userPanel.add(numitemsCheckedOut);
         userPanel.add(chkOut);
-        userPanel.add(usersItemList);
+        userPanel.add(checkedOutItemsLabel);
+        userPanel.add(scrollPane);
         userPanel.add(LoginButton);
         userPanel.add(mainMenuButton);
         userFrame.add(userPanel);

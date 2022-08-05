@@ -45,6 +45,9 @@ public class UserView extends JFrame {
             model.addElement(string);
         }
 
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(usersItemList);
+
         JLabel name = new JLabel(user.getName());
         JFrame userFrame = new JFrame(user.getName() + "'s Library Card");
         JLabel age = new JLabel(Integer.toString(user.getAge()));
@@ -127,7 +130,7 @@ public class UserView extends JFrame {
         userPanel.add(fines);
         userPanel.add(numitemsCheckedOut);
         userPanel.add(chkOut);
-        userPanel.add(usersItemList);
+        userPanel.add(scrollPane);
         userPanel.add(checkOutButton);
         userPanel.add(payFineButton);
         userPanel.add(returnItemButton);

@@ -29,7 +29,10 @@ public class RenewItemView extends JFrame {
             model.addElement(string);
         }
 
-        Frame.setSize(400, 200);
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(usersItemList);
+
+        Frame.setSize(400, 250);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Panel.setLayout(new GridLayout(4, 1));
@@ -65,7 +68,7 @@ public class RenewItemView extends JFrame {
         });
 
         Panel.add(label);
-        Panel.add(usersItemList);
+        Panel.add(scrollPane);
         Panel.add(renewItemButton);
         Panel.add(mainMenuButton);
         Frame.add(Panel);

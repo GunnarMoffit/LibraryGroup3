@@ -9,7 +9,7 @@ public class UserSearchView extends JFrame {
     private JFrame Frame = new JFrame("User Search Window");
     private JPanel Panel = new JPanel();
     private JButton searchUserButton = new JButton("Search");
-    private JLabel textLabel = new JLabel("Enter User:");
+    private JLabel textLabel = new JLabel("Enter User Name:");
     private JButton menuButton = new JButton("Main Menu");
     private JTextField TextField = new JTextField();
     protected Library library;
@@ -58,6 +58,7 @@ public class UserSearchView extends JFrame {
         Panel.add(menuButton);
         Panel.add(searchUserButton);
         Frame.add(Panel);
+        Frame.setLocationRelativeTo(null);
         Frame.setVisible(true);
     }
 }

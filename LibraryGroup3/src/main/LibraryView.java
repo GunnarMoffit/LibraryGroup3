@@ -73,6 +73,7 @@ public class LibraryView extends JFrame {
         homePanel.add(AddUserButton);
         homePanel.add(AddItemButton);
         homeFrame.add(homePanel);
+        homeFrame.setLocationRelativeTo(null);
         homeFrame.setVisible(true);
     }
 }

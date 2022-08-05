@@ -35,12 +35,6 @@ public class AddUserView extends JFrame {
 
         userPanel.setLayout(new GridLayout(5, 2));
 
-        //Text Field
-        String name = nameField.getText();
-        String address = addressField.getText();
-        String age = ageField.getText();
-        String phoneNumber = phoneNumberField.getText();
-
         //Main Menu Button
         menuButton.addActionListener(new ActionListener() {
             @Override
@@ -56,8 +50,13 @@ public class AddUserView extends JFrame {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Text Field
+                String name = nameField.getText();
+                String address = addressField.getText();
+                String age = ageField.getText();
+                String phoneNumber = phoneNumberField.getText();
                 if (e.getSource() == addButton) {
-                    User tempUser = new User(name, address, age, Integer.parseInt(phoneNumber));
+                    User tempUser = new User(name, address, phoneNumber, Integer.parseInt(age));
                     library.addUser(tempUser);
                     userFrame.dispose();
                     LibraryView libraryview = new LibraryView(library);
