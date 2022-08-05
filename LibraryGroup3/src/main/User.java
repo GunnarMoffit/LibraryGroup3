@@ -153,7 +153,7 @@ public class User implements java.io.Serializable {
         this.addFines((item.loan.calculateFine(item)));
         item.loan.remLoanData(item);
         this.remItemChecked(item);
-        item.setAvailable(true);
+        item.setLoanable(true);
         String message = "Item Checked in";
         return message;
     }
