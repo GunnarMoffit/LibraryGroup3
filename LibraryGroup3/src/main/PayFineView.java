@@ -29,7 +29,6 @@ public class PayFineView extends JFrame {
 
         Panel.setLayout(new GridLayout(3, 2));
 
-        String text = TextField.getText();
         String currentFines = Double.toString(user.getFines());
         JLabel fines = new JLabel(currentFines);
 
@@ -38,9 +37,11 @@ public class PayFineView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == payFineButton) {
+                    String text = TextField.getText();
                     double fine = Double.parseDouble(text);
                     user.payFines(fine);
                     Frame.dispose();
+                    UserView userview = new UserView(library, user);
                 }
             }
         });
