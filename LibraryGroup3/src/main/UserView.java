@@ -43,7 +43,14 @@ public class UserView extends JFrame {
         JList<String> usersItemList = new JList<>(model);
 
         for (String string : user.getItemsCheckedOut()) {
-            model.addElement(string);
+        	String dueDate = "";
+        	for (Item item : library.items) {
+        		if (string.equals(item.getName())) {
+        			dueDate = item.loan.getDueDate();
+        		}
+        	}
+        	String totString = (string + " Due Date: " + dueDate);
+            model.addElement(totString);
         }
 
         JScrollPane scrollPane = new JScrollPane();

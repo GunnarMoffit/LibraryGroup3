@@ -124,6 +124,9 @@ public class User implements java.io.Serializable {
     				double y = item.loan.calculateFine(item);
     				this.addFines(y);
     			}
+    			else {
+    				
+    			}
     		}
     	}    	
     }
