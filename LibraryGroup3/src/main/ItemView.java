@@ -11,7 +11,7 @@ public class ItemView extends JFrame {
     private JLabel loanabilityLabel = new JLabel("Able to loan: ");
     private JLabel availabilityLabel = new JLabel("Checked Out: ");
     private JLabel requestedLabel = new JLabel("Requested: ");
-    //    private JLabel dueDateLabel = new JLabel("Date Due: ");
+    private JLabel dueDateLabel = new JLabel("Date Due: ");
     private JButton menuButton = new JButton("Main Menu");
     protected Library library;
 
@@ -33,6 +33,10 @@ public class ItemView extends JFrame {
         JLabel loanability = new JLabel(String.valueOf(item.isloanable()));
         JLabel checkedOut = new JLabel(String.valueOf(chkOut));
         JLabel requested = new JLabel(String.valueOf(item.isRequested()));
+        JLabel dueDate = new JLabel();
+
+        if(!item.isAvailable())
+            dueDate = new JLabel(item.loan.getDueDate());
 
         itemFrame.setSize(450, 550);
         itemFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,6 +64,8 @@ public class ItemView extends JFrame {
         itemPanel.add(checkedOut);
         itemPanel.add(requestedLabel);
         itemPanel.add(requested);
+        itemPanel.add(dueDateLabel);
+        itemPanel.add(dueDate);
         itemPanel.add(new JLabel());
         itemPanel.add(menuButton);
         itemFrame.add(itemPanel);
