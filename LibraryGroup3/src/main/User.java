@@ -124,6 +124,13 @@ public class User implements java.io.Serializable {
             if (this.ItemsCheckedOut.size() == 5) {
                 message ="Maximum number of Items checked out \n";
             }
+            else if (item.isAvailable()) {
+                item.setLoan(this);
+                item.setAvailable(false);
+                this.addItemChecked(item);
+                this.remItemRequested(item);
+                message ="Item has been checked out";
+            }
         }
         else if (!item.isloanable()) {
             message = "This item cannot be checked out";
