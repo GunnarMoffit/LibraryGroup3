@@ -113,9 +113,10 @@ public class User implements java.io.Serializable {
     public void addFines(double x) {
         this.fines = this.fines + x;
     }
-
+    
     public void payFines(double x) {
-        this.fines = this.fines - x;
+        if(this.fines - x >= 0)
+            this.fines = this.fines - x;
     }
 
     public String requestItem(Item item) {
