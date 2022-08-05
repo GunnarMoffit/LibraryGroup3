@@ -1,4 +1,6 @@
 package main;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 public class User implements java.io.Serializable {
@@ -128,6 +130,13 @@ public class User implements java.io.Serializable {
     
     public void payFines(double x) {
         this.fines = this.fines - x;
+        BigDecimal bd = new BigDecimal(this.fines).setScale(2, RoundingMode.HALF_UP);
+        this.fines = bd.doubleValue();
+        if(this.fines - x >= 0) {
+            this.fines = this.fines - x;
+            BigDecimal a = new BigDecimal(this.fines).setScale(2, RoundingMode.HALF_UP);
+            this.fines = bd.doubleValue();
+        }
     }
 
     public String requestItem(Item item) {

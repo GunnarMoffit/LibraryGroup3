@@ -3,6 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class PayFineView extends JFrame {
     private JFrame Frame = new JFrame("Pay Fine Window");
@@ -14,6 +16,7 @@ public class PayFineView extends JFrame {
     private JButton mainMenuButton = new JButton("Main Menu");
     protected Library library;
     protected User user;
+    
 
     //"Pay Fine Window"
     //  Total Fines:
@@ -29,7 +32,7 @@ public class PayFineView extends JFrame {
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Panel.setLayout(new GridLayout(3, 2));
-
+        
         String currentFines = Double.toString(user.getFines());
         JLabel fines = new JLabel(currentFines);
 
