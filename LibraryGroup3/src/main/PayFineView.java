@@ -7,6 +7,7 @@ public class PayFineView extends JFrame {
     private JFrame Frame = new JFrame("Pay Fine Window");
     private JPanel Panel = new JPanel();
     private JLabel label = new JLabel("Total Fines: ");
+    private JLabel fineLabel = new JLabel("Enter $ Amount: ");
     private JTextField TextField = new JTextField();
     private JButton payFineButton = new JButton("Pay Fine");
     private JButton mainMenuButton = new JButton("Main Menu");
@@ -26,11 +27,13 @@ public class PayFineView extends JFrame {
         Frame.setSize(400, 250);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Panel.setLayout(new GridLayout(4, 1));
+        Panel.setLayout(new GridLayout(3, 2));
 
         String text = TextField.getText();
+        String currentFines = Double.toString(user.getFines());
+        JLabel fines = new JLabel(currentFines);
 
-        //  TODO:PayFine Button
+        //PayFine Button
         payFineButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -54,6 +57,8 @@ public class PayFineView extends JFrame {
         });
 
         Panel.add(label);
+        Panel.add(fines);
+        Panel.add(fineLabel);
         Panel.add(TextField);
         Panel.add(payFineButton);
         Panel.add(mainMenuButton);

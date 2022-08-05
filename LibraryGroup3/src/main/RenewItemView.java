@@ -35,10 +35,6 @@ public class RenewItemView extends JFrame {
         Frame.setSize(400, 250);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Panel.setLayout(new GridLayout(4, 1));
-
-        //String text = TextField.getText();
-
         // TODO:RenewItem Button
         renewItemButton.addActionListener(new ActionListener() {
             @Override

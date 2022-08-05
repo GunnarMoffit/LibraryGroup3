@@ -33,8 +33,6 @@ public class CheckOutView extends JFrame {
         Frame.setSize(400, 250);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Panel.setLayout(new GridLayout(4, 1));
-
         // TODO:Request Button
         requestButton.addActionListener(new ActionListener() {
             @Override

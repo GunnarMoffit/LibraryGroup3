@@ -63,8 +63,6 @@ public class UserView extends JFrame {
 
         userPanel.setLayout(new GridLayout(12, 2));
 
-        //CheckedOutItems List
-
         //Buttons
         checkOutButton.addActionListener(new ActionListener() {
             @Override

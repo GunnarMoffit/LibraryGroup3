@@ -12,12 +12,6 @@ public class ReturnItemView extends JFrame {
     protected Library library;
     protected User user;
 
-    //"Return Item Window"
-    //  ItemName TextField
-    //  User specific Items Checkout List
-    //  Return Item Button
-    //  MainMenu Button
-
     ReturnItemView(Library library, User user){
         this.library = library;
         this.user = user;
@@ -35,11 +29,7 @@ public class ReturnItemView extends JFrame {
         Frame.setSize(400, 250);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Panel.setLayout(new GridLayout(4, 1));
-
-//        String text = TextField.getText();
-
-        //  TODO:ReturnItem Button
+        //ReturnItem Button
         returnItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
