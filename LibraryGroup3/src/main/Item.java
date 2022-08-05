@@ -3,74 +3,70 @@ import java.io.*;
 public class Item implements java.io.Serializable{
 
 
-    private static final long serialVersionUID = 1L;
-    //name of item
-    protected String name;
+	private static final long serialVersionUID = 1L;
+	//name of item
+	protected String name;
 
-    //value of the item
-    protected float valueOfItem;
+	//value of the item
+	protected float valueOfItem;
 
-    //qualifier if the item is loanable
-    //default is set at 1, unless item is a magazine or reference book
-    protected boolean loanable;
+	//qualifier if the item is loanable
+	//default is set at 1, unless item is a magazine or reference book
+	protected boolean loanable;
 
-    //boolean to determine whether the item is requested
-    //default is 0
-    protected boolean requested;
+	//boolean to determine whether the item is requested
+	//default is 0
+	protected boolean requested;
 
-    //boolean to determine whether the item is available
-    //default is 1
-    protected boolean available;
+	//boolean to determine whether the item is available
+	//default is 1
+	protected boolean available;
 
-    //boolean to determine whether the item is restricted
-    //default is 0
-    protected boolean restricted;
+	//boolean to determine whether the item is restricted
+	//default is 0
+	protected boolean restricted;
 
-    protected Loans loan;
-
-
-    public Item(String a,float b){
-        name = a;
-        valueOfItem = b;
-        requested = false;
-        available = true;
-    }
+	protected Loans loan;
 
 
-    //getters for
-    public String getName() {
-        return name;
-    };
+	public Item(String a,float b){
+		name = a;
+		valueOfItem = b;
+		requested = false;
+		available = true;
+	}
 
-    public float getValue() {
-        return valueOfItem;
-    };
 
-    public boolean isloanable() {
-        return loanable;
-    };
+	//getters for
+	public String getName() {
+		return name;
+	};
 
-    public boolean isRequested() {
-        return requested;
-    };
+	public float getValue() {
+		return valueOfItem;
+	};
 
-    public boolean isAvailable() {
-        return available;
-    };
+	public boolean isloanable() {
+		return loanable;
+	};
 
-    public void setRequested(boolean setter) {
-        this.requested = setter;
-    };
+	public boolean isRequested() {
+		return requested;
+	};
 
-    public void setLoanable(boolean setter) {
-        this.loanable = setter;
-    }
+	public boolean isAvailable() {
+		return available;
+	};
 
-    public void setAvailable(boolean setter) {
-        this.available = setter;
-    };
+	public void setRequested(boolean setter) {
+		this.requested = setter;
+	};
 
-    public void setLoan(User x) {
-        this.loan = new ShortTermLoan(x, this);
-    }
+	public void setAvailable(boolean setter) {
+		this.available = setter;
+	};
+
+	public void setLoan(User x) {
+		this.loan = new ShortTermLoan(x, this);
+	}
 }

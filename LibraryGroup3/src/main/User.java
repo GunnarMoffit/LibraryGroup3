@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 
 public class User implements java.io.Serializable {
@@ -126,12 +125,12 @@ public class User implements java.io.Serializable {
                 message ="Maximum number of Items checked out \n";
             }
         }
-        else if (item.isloanable() == false) {
+        else if (!item.isloanable()) {
             message = "This item cannot be checked out";
         }
-        else if (item.isAvailable() == true){
+        else if (item.isAvailable()){
             item.setLoan(this);
-            item.setLoanable(false);
+            item.setAvailable(false);
             this.addItemChecked(item);
             this.remItemRequested(item);
             message = "Item has been checked out";
@@ -153,7 +152,7 @@ public class User implements java.io.Serializable {
         this.addFines((item.loan.calculateFine(item)));
         item.loan.remLoanData(item);
         this.remItemChecked(item);
-        item.setLoanable(true);
+        item.setAvailable(true);
         String message = "Item Checked in";
         return message;
     }

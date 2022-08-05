@@ -3,11 +3,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ItemView extends JFrame import javax.swing.*;
-        import java.awt.*;
-        import java.awt.event.ActionEvent;
-        import java.awt.event.ActionListener;
-
 public class ItemView extends JFrame {
     private JFrame itemFrame = new JFrame("Item Description");
     private JPanel itemPanel = new JPanel();
@@ -31,7 +26,7 @@ public class ItemView extends JFrame {
 
     ItemView(Library library, Item item) {
 
-        boolean chkOut = !item.isloanable();
+        boolean chkOut = !item.isAvailable();
         this.library = library;
         JLabel name = new JLabel(item.getName());
         JLabel value = new JLabel(Float.toString(item.valueOfItem));
