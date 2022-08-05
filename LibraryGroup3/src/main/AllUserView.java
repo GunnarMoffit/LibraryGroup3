@@ -31,7 +31,7 @@ public class AllUserView {
         Frame.setSize(400, 200);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //Panel.setLayout(new GridLayout(4, 1));
+        Panel.setLayout(new GridLayout(1, 4));
 
         viewSelectButton.addActionListener(new ActionListener() {
             @Override

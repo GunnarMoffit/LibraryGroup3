@@ -45,7 +45,7 @@ public class ItemCatView {
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(catList);
 
-        Frame.setSize(300, 200);
+        Frame.setSize(500, 200);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Panel.setLayout(new GridLayout(2, 2));
