@@ -1,4 +1,8 @@
 package main;
+<<<<<<< Updated upstream
+=======
+public class AudVid extends Item {
+>>>>>>> Stashed changes
 
 public class AudVid extends Item {
 	

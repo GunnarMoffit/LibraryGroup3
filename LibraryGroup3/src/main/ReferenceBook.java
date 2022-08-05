@@ -1,5 +1,8 @@
 package main;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 public class ReferenceBook extends Item {
 
 

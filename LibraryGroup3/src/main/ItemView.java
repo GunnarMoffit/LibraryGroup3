@@ -1,9 +1,13 @@
 package main;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 public class ItemView extends JFrame {
     private JPanel itemPanel = new JPanel();
@@ -14,6 +18,7 @@ public class ItemView extends JFrame {
     private JLabel requestedLabel = new JLabel("Requested: ");
     private JButton menuButton = new JButton("Main Menu");
     protected Library library;
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
     
 

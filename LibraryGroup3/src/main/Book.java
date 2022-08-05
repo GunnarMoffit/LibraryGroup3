@@ -1,4 +1,20 @@
 package main;
+<<<<<<< Updated upstream
+=======
+public class Book extends Item {
+
+    private static final long serialVersionUID = 1L;
+    private boolean bestSeller;
+    private boolean renewed;
+
+    public Book(String a, float b, boolean c) {
+        super(a, b);
+        this.loanable = true;
+        this.bestSeller = c;
+        this.renewed = false;
+
+    }
+>>>>>>> Stashed changes
 
 public class Book extends Item {
 

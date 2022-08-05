@@ -1,9 +1,13 @@
 package main;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 public class UserView extends JFrame {
     private JFrame userFrame = new JFrame("'s Library Card");
@@ -22,7 +26,11 @@ public class UserView extends JFrame {
     private JButton renewItemButton = new JButton("Renew Items");
     private JButton mainMenuButton = new JButton("Main Menu");
     protected Library library;
+<<<<<<< Updated upstream
 
+=======
+    protected User user;
+>>>>>>> Stashed changes
     //"User's Library Card"
     //  Name:
     //  Age:

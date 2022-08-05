@@ -1,5 +1,8 @@
 package main;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 import java.io.*;
 
 public class Item implements java.io.Serializable{

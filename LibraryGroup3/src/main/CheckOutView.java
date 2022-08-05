@@ -1,5 +1,8 @@
 package main;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 import org.w3c.dom.Text;
 
 import javax.swing.*;

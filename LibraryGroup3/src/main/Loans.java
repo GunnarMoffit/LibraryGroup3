@@ -1,5 +1,10 @@
 package main;
+<<<<<<< Updated upstream
 
+=======
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+>>>>>>> Stashed changes
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -40,6 +45,13 @@ public class Loans implements java.io.Serializable {                    //SuperC
         	}
         return formStart;
     }
+<<<<<<< Updated upstream
+=======
+
+    public void changeDueDate(LocalDate date) {
+        this.dueDate = date;
+    }
+>>>>>>> Stashed changes
     
     public String setDueDate() {
         String message = "Please Specify Length of loan";
@@ -79,8 +91,15 @@ public class Loans implements java.io.Serializable {                    //SuperC
         }
         if (fee > price) {                                               //If fee is greater than item price, fee = price
             fee = price;
+<<<<<<< Updated upstream
         }   
         return fee;                                                     //Returns fee -- double unformatted
+=======
+        }
+        BigDecimal bd = new BigDecimal(fee).setScale(2, RoundingMode.HALF_UP);
+        double x = bd.doubleValue();
+        return x;                                                     //Returns fee -- double unformatted
+>>>>>>> Stashed changes
     }
     
     public void remLoanData(Item item) {
