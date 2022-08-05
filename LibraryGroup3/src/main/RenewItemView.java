@@ -1,8 +1,4 @@
 package main;
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,11 +7,11 @@ import java.awt.event.ActionListener;
 public class RenewItemView extends JFrame {
     private JFrame Frame = new JFrame("Renew Item Window");
     private JPanel Panel = new JPanel();
-    private JTextField TextField = new JTextField();
-    private JList<Item> checkoutItemList = new JList<>();
+    private JLabel label = new JLabel("Item List");
     private JButton renewItemButton = new JButton("Renew Item");
     private JButton mainMenuButton = new JButton("Main Menu");
     protected Library library;
+    protected User user;
 
     //"RenewItemView"
     //  ItemName TextField
@@ -23,22 +19,36 @@ public class RenewItemView extends JFrame {
     //  Renew Item Button
     //  MainMenu Button
 
-    RenewItemView(Library library){
+    RenewItemView(Library library, User user){
         this.library = library;
+        this.user = user;
 
-        Frame.setSize(400, 200);
+        DefaultListModel<String> model = new DefaultListModel<>();
+        JList<String> usersItemList = new JList<>(model);
+
+        for (String string : user.getItemsCheckedOut()) {
+            model.addElement(string);
+        }
+
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(usersItemList);
+
+        Frame.setSize(400, 250);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Panel.setLayout(new GridLayout(4, 1));
-
-        String text = TextField.getText();
-
-        //  RenewItem Button
+        // TODO:RenewItem Button
         renewItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == renewItemButton) {
-                    Frame.dispose();
+                    String txt = usersItemList.getSelectedValue();
+                    for(Item item : library.items) {
+                        if(txt.equals(item.getName())) {
+                            JOptionPane.showMessageDialog(null, user.renewItem(item));
+                            Frame.dispose();
+                            UserView userview = new UserView(library, user);
+                        }
+                    }
                 }
             }
         });
@@ -54,8 +64,8 @@ public class RenewItemView extends JFrame {
             }
         });
 
-        Panel.add(TextField);
-        Panel.add(checkoutItemList);
+        Panel.add(label);
+        Panel.add(scrollPane);
         Panel.add(renewItemButton);
         Panel.add(mainMenuButton);
         Frame.add(Panel);

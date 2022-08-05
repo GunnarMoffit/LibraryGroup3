@@ -2,26 +2,20 @@ package main;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-
+import java.time.temporal.ChronoUnit;
 
 public class ShortTermLoan extends Loans{           //Short term Loans
+    private static final long serialVersionUID = 1L;
 
 
-
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-
-	public ShortTermLoan(User user, Item item) {                     //Constructor automatically sets up start and end date automatically
+    public ShortTermLoan(User user, Item item) {                     //Constructor automatically sets up start and end date automatically
         super(user, item);
         this.setDueDate();
     }
 
-    
+
     @Override public String setDueDate() {                 //Due date uses start date adding 21 days
-    	String message = "Book is due in 14 days";
+        String message = "Book is due in 14 days";
         this.dueDate = this.startDate.plusDays(14);
         return message;
     }
@@ -47,5 +41,5 @@ public class ShortTermLoan extends Loans{           //Short term Loans
         }
         return message;
     }
-     
+
 }

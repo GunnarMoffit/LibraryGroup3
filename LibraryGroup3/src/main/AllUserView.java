@@ -1,8 +1,4 @@
 package main;
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,28 +23,30 @@ public class AllUserView {
         JList<String> userList = new JList<>(model);
 
         for (User user : library.users) {
-        	model.addElement(user.getName());	
+            model.addElement(user.getName());
         }
- 
-    
+
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(userList);
+
         Frame.setSize(400, 200);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //Panel.setLayout(new GridLayout(4, 1));
+        Panel.setLayout(new GridLayout(1, 4));
 
         viewSelectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == viewSelectButton) {
-                	String txt = userList.getSelectedValue();
-                	for (User user : library.users) {
-                		if (txt.equals(user.getName())) {
-                			Frame.dispose();
+                    String txt = userList.getSelectedValue();
+                    for (User user : library.users) {
+                        if (txt.equals(user.getName())) {
+                            Frame.dispose();
                             UserOverView userOverview = new UserOverView(library, user);
-                		}
-                	}
+                        }
+                    }
                 }
-            }         	
+            }
         });
 
         //MainMenu Button
@@ -63,7 +61,7 @@ public class AllUserView {
         });
 
         Panel.add(label);
-        Panel.add(userList);
+        Panel.add(scrollPane);
         Panel.add(viewSelectButton);
         Panel.add(mainMenuButton);
         Frame.add(Panel);

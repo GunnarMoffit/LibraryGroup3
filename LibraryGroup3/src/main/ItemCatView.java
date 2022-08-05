@@ -1,8 +1,4 @@
 package main;
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,115 +19,51 @@ public class ItemCatView {
 
 
     ItemCatView(Library library, String x){
-
-        DefaultListModel<String> model = new DefaultListModel<>();
-        JList<String> catList = new JList<>(model);
-        if (x.equals("Books")){
-        	for (Book book : library.books) {
-        		model.addElement(book.getName());
-        	}
-        }
-        else if (x.equals("AudVid")) {
-        	for (AudVid av : library.audvids) {
-        		model.addElement(av.getName());
-        	}
-        }
-        else if (x.equals("Ref-Books")) {
-        	for (ReferenceBook refbook : library.refbooks) {
-        		model.addElement(refbook.getName());
-        	}
-        }
-        else {
-        	for (Magazine mag : library.mags) {
-        		model.addElement(mag.getName());
-        	}
-        }
- 
-    
-        Frame.setSize(300, 400);
-        Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //Panel.setLayout(new GridLayout(4, 1));
-
-        viewSelectButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == viewSelectButton) {
-                	String txt = catList.getSelectedValue();
-                	for (Item item : library.items) {
-                		if (txt.equals(item.getName())) {
-                			Frame.dispose();
-                            ItemView itemView = new ItemView(library, item);
-                		}
-                	}
-                }
-            }         	
-        });
-
-        //MainMenu Button
-        mainMenuButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == mainMenuButton) {
-                    Frame.dispose();
-                    LibraryView libraryview = new LibraryView(library);
-                }
-            }
-        });
-
-        Panel.add(label);
-        Panel.add(catList);
-        Panel.add(viewSelectButton);
-        Panel.add(mainMenuButton);
-        Frame.add(Panel);
-        Frame.setLocationRelativeTo(null);
-        Frame.setVisible(true);
-    }
-    
-    ItemCatView(Library library, String x, User user){
         this.library = library;
         DefaultListModel<String> model = new DefaultListModel<>();
         JList<String> catList = new JList<>(model);
         if (x.equals("Books")){
-        	for (Book book : library.books) {
-        		model.addElement(book.getName());
-        	}
+            for (Book book : library.books) {
+                model.addElement(book.getName());
+            }
         }
         else if (x.equals("AudVid")) {
-        	for (AudVid av : library.audvids) {
-        		model.addElement(av.getName());
-        	}
+            for (AudVid av : library.audvids) {
+                model.addElement(av.getName());
+            }
         }
         else if (x.equals("Ref-Books")) {
-        	for (ReferenceBook refbook : library.refbooks) {
-        		model.addElement(refbook.getName());
-        	}
+            for (ReferenceBook refbook : library.refbooks) {
+                model.addElement(refbook.getName());
+            }
         }
         else {
-        	for (Magazine mag : library.mags) {
-        		model.addElement(mag.getName());
-        	}
+            for (Magazine mag : library.mags) {
+                model.addElement(mag.getName());
+            }
         }
- 
-    
-        Frame.setSize(300, 400);
+
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(catList);
+
+        Frame.setSize(500, 200);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //Panel.setLayout(new GridLayout(4, 1));
+        Panel.setLayout(new GridLayout(2, 2));
 
         viewSelectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == viewSelectButton) {
-                	String txt = catList.getSelectedValue();
-                	for (Item item : library.items) {
-                		if (txt.equals(item.getName())) {
-                			Frame.dispose();
-                            ItemView itemView = new ItemView(library, item, user);
-                		}
-                	}
+                    String txt = catList.getSelectedValue();
+                    for (Item item : library.items) {
+                        if (txt.equals(item.getName())) {
+                            Frame.dispose();
+                            ItemView itemView = new ItemView(library, item);
+                        }
+                    }
                 }
-            }         	
+            }
         });
 
         //MainMenu Button
@@ -146,9 +78,9 @@ public class ItemCatView {
         });
 
         Panel.add(label);
-        Panel.add(catList);
-        Panel.add(viewSelectButton);
+        Panel.add(scrollPane);
         Panel.add(mainMenuButton);
+        Panel.add(viewSelectButton);
         Frame.add(Panel);
         Frame.setLocationRelativeTo(null);
         Frame.setVisible(true);

@@ -1,8 +1,4 @@
 package main;
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,8 +15,9 @@ public class AddItemView extends JFrame {
     private String[] typeStrings = { "Books" , "Ref-Books", "Magazines", "AudVid" };
     private JComboBox itemType = new JComboBox(typeStrings);
     private JButton addButton = new JButton("Add Item");
+    private JButton menuButton = new JButton("Main Menu");
     private JLabel bestTxt = new JLabel("Best Seller");
-    private String[] bestStrings = { "Yes", "No" };
+    private String[] bestStrings = { "No", "Yes" };
     private JComboBox bestType = new JComboBox(bestStrings);
     protected Library library;
 
@@ -45,39 +42,51 @@ public class AddItemView extends JFrame {
                 String temp = valueField.getText();
                 Float value = Float.parseFloat(temp);
                 if (e.getSource() == addButton) {
-                	String x = (String) itemType.getSelectedItem();
-                	String y = (String) bestType.getSelectedItem();
+                    String x = (String) itemType.getSelectedItem();
+                    String y = (String) bestType.getSelectedItem();
                     if (x.equals("Books")) {
-                    	if (y.equals("Yes")) {
-                    		Book z = new Book(name, value, true);
-                    		library.items.add(z);	
-                    	}
-                    	else {
-                    		Book z = new Book(name, value, false);
-                    		library.books.add(z);
-                    		library.items.add(z);	
-                    	}
+                        if (y.equals("Yes")) {
+                            Book z = new Book(name, value, true);
+                            library.books.add(z);
+                            library.items.add(z);
+                        }
+                        else {
+                            Book z = new Book(name, value, false);
+                            library.books.add(z);
+                            library.items.add(z);
+                        }
                     }
                     else if (x.equals("AudVid")) {
-                    		AudVid z = new AudVid(name, value);
-                    		library.audvids.add(z);
-                    		library.items.add(z);	
+                        AudVid z = new AudVid(name, value);
+                        library.audvids.add(z);
+                        library.items.add(z);
                     }
                     else if (x.equals("Ref-Books")) {
-                    	ReferenceBook z = new ReferenceBook(name, value);
-                    	library.refbooks.add(z);
-                    	library.items.add(z);	
+                        ReferenceBook z = new ReferenceBook(name, value);
+                        library.refbooks.add(z);
+                        library.items.add(z);
                     }
                     else {
-                    	Magazine z = new Magazine(name,value);
-                    	library.mags.add(z);
-                    	library.items.add(z);	
+                        Magazine z = new Magazine(name,value);
+                        library.mags.add(z);
+                        library.items.add(z);
                     }
-                
+
                     userFrame.dispose();
                     LibraryView libraryview = new LibraryView(library);
                 }
             }});
+
+        //Main Menu Button
+        menuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == menuButton) {
+                    userFrame.dispose();
+                    LibraryView libraryview = new LibraryView(library);
+                }
+            }
+        });
 
 
         userPanel.add(nameLabel);
@@ -88,6 +97,7 @@ public class AddItemView extends JFrame {
         userPanel.add(itemType);
         userPanel.add(bestTxt);
         userPanel.add(bestType);
+        userPanel.add(menuButton);
         userPanel.add(addButton);
         userFrame.add(userPanel);
         userFrame.setLocationRelativeTo(null);

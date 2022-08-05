@@ -1,30 +1,21 @@
 package main;
-<<<<<<< Updated upstream
-=======
 public class AudVid extends Item {
->>>>>>> Stashed changes
 
-public class AudVid extends Item {
-	
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private boolean renewed;
 
-	public AudVid(String a, float b) {
-	super(a, b);
-	this.loanable = true;
-	this.renewed = false;
-	}
+    private static final long serialVersionUID = 1L;
+    private boolean renewed;
 
-	public boolean isRenewed() {
-		return renewed;
-	}
+    public AudVid(String a, float b) {
+        super(a, b);
+        this.loanable = true;
+        this.renewed = false;
+    }
 
-	public void setRenewed(boolean renewed) {
-		this.renewed = renewed;
-	}
+    public boolean isRenewed() {
+        return renewed;
+    }
+
+    public void setRenewed(boolean renewed) {
+        this.renewed = renewed;
+    }
 }
-

@@ -1,8 +1,4 @@
 package main;
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 import org.w3c.dom.Text;
 
 import javax.swing.*;
@@ -13,42 +9,44 @@ import java.awt.event.ActionListener;
 public class CheckOutView extends JFrame {
     private JFrame Frame = new JFrame("Checkout Item Window");
     private JPanel Panel = new JPanel();
-    private JTextField TextField = new JTextField();
-    private JButton searchButton = new JButton("Search");
-    private JButton checkoutButton = new JButton("Checkout");
+    private JLabel label = new JLabel("Item List");
+    private JButton requestButton = new JButton("Request");
     private JButton mainMenuButton = new JButton("Main Menu");
     protected Library library;
+    protected User user;
 
     //"Checkout Item Window"
-    //  SearchItem TextField
-    //  SearchButton Button
-    //  CheckoutButton Button
     //  MainMenu Button
 
-    CheckOutView(Library library){
+    CheckOutView(Library library, User user){
         this.library = library;
+        this.user = user;
+        DefaultListModel<String> model = new DefaultListModel<>();
+        JList<String> itemList = new JList<>(model);
 
-        Frame.setSize(400, 200);
+        for (Item item : library.items) {
+            model.addElement(item.getName());
+        }
+
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(itemList);
+
+        Frame.setSize(400, 250);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Panel.setLayout(new GridLayout(4, 1));
-
-        //TODO:Search Button
-        searchButton.addActionListener(new ActionListener() {
+        // TODO:Request Button
+        requestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == searchButton) {
-                    Frame.dispose();
-                }
-            }
-        });
-
-        //TODO:Checkout Button
-        checkoutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == checkoutButton) {
-                    Frame.dispose();
+                if (e.getSource() == requestButton) {
+                    String txt = itemList.getSelectedValue();
+                    for(Item item : library.items) {
+                        if(txt.equals(item.getName())) {
+                            JOptionPane.showMessageDialog(null, user.requestItem(item));
+                            Frame.dispose();
+                            UserView userview = new UserView(library, user);
+                        }
+                    }
                 }
             }
         });
@@ -64,9 +62,9 @@ public class CheckOutView extends JFrame {
             }
         });
 
-        Panel.add(TextField);
-        Panel.add(searchButton);
-        Panel.add(checkoutButton);
+        Panel.add(label);
+        Panel.add(scrollPane);
+        Panel.add(requestButton);
         Panel.add(mainMenuButton);
         Frame.add(Panel);
         Frame.setLocationRelativeTo(null);

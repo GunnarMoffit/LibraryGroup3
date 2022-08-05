@@ -1,8 +1,4 @@
 package main;
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,7 +19,7 @@ public class UserLoginView extends JFrame {
     //  Search Button
 
     UserLoginView(Library library, User user){
-    	User x = user;
+        User x = user;
         this.library = library;
         int correctID = user.getID();
         Frame.setSize(150, 150);
@@ -36,21 +32,21 @@ public class UserLoginView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == searchUserButton) {
-                	int input = parseInt(TextField.getText());
-                	if (input == correctID) {
-                		Frame.dispose();
-                		UserView userView = new UserView(library, user);
-                	}
-                	else {
+                    int input = parseInt(TextField.getText());
+                    if (input == correctID) {
+                        Frame.dispose();
+                        UserView userView = new UserView(library, user);
+                    }
+                    else {
                         Frame.dispose();
                         System.out.println("Incorrect ID");
                         LibraryView libraryview = new LibraryView(library);
-                	}
+                    }
                 }
             }
         });
 
-        
+
         Panel.add(inputLabel);
         Panel.add(TextField);
         Panel.add(searchUserButton);
@@ -58,5 +54,5 @@ public class UserLoginView extends JFrame {
         Frame.setLocationRelativeTo(null);
         Frame.setVisible(true);
     }
-    
+
 }

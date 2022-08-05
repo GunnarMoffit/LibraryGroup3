@@ -1,70 +1,63 @@
 package main;
 
+import java.lang.ref.Reference;
 import java.util.ArrayList;
 import java.io.*;
 
-public class Library implements java.io.Serializable{
+import javax.swing.*;
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	//need method to return user specific checked out items "User.getItems()"
-    //need method to return item specific fines, Item.getFine()
-    //need method to return item specific due date, Item.getDueDate()
-    //need user constructor method in user class
-	public ArrayList<Item> items;
-	public ArrayList<User> users;
-	public ArrayList<Book> books;
-	public ArrayList<AudVid> audvids;
-	public ArrayList<Magazine> mags;
-	public ArrayList<ReferenceBook> refbooks;
-	private int userID = 10001;
-    //Map containing Library Card #'s as keys, and User objects as values
-    //HashMap<Integer, User> usersMap = new HashMap<>();
-    //
-    //Map containing Item names as keys, and Item objects as values
-    //HashMap<String, Item> itemMap = new HashMap<>();
-    public Library() {                    //Generic Constructor
+//need method to return item specific fines, getFine()
+//need method to return item specific due date, getDueDate()
+
+public class Library extends JFrame implements java.io.Serializable{
+
+    private static final long serialVersionUID = 1L;
+
+    //List of Item objects, can be book, magazine, etc..
+    public ArrayList<Item> items;
+    //List of User objects, has name, address, etc..
+    public ArrayList<User> users;
+    public ArrayList<Book> books;
+    public ArrayList<AudVid> audvids;
+    public ArrayList<Magazine> mags;
+    public ArrayList<ReferenceBook> refbooks;
+    private int userID = 10001;
+
+    //Generic Constructor
+    public Library() {
         this.users = new ArrayList<>();
         this.items = new ArrayList<>();
         this.books = new ArrayList<>();
         this.audvids = new ArrayList<>();
         this.mags = new ArrayList<>();
         this.refbooks = new ArrayList<>();
-        
     }
-    //List of Item objects, can be book, magazine, etc..
-
-
-    //List of User objects, has name, address, etc..
-    
 
     public void addUser(User x){
-    	int a = userID + users.size();
-        x.setID(a);
-    	users.add(x);
+        x.setID(userID);
+        users.add(x);
+        userID++;
     }
 
     public void addItem(Item y){
-    	Book bookEx = new Book("1", 9.55f, false);
-    	AudVid avEx = new AudVid("1", 1.50f);
-    	ReferenceBook refBook = new ReferenceBook("Map", 3.85f);
+        Book bookEx = new Book("1", 9.55f, false);
+        AudVid avEx = new AudVid("1", 1.50f);
+        ReferenceBook refBook = new ReferenceBook("Map", 3.85f);
         Magazine mag = new Magazine("Ex", 19.99f);
         if (y.getClass() == bookEx.getClass()) {
-        	books.add((Book) y);
+            books.add((Book) y);
         }
         else if (y.getClass() == avEx.getClass()) {
-        	audvids.add((AudVid) y);
+            audvids.add((AudVid) y);
         }
         else if (y.getClass() == refBook.getClass()) {
-        	refbooks.add((ReferenceBook) y);
+            refbooks.add((ReferenceBook) y);
         }
         else {
-        	mags.add((Magazine) y);
+            mags.add((Magazine) y);
         }
         items.add(y);
-	
+
     }
 
     public ArrayList<User> getUserList(){
@@ -76,12 +69,12 @@ public class Library implements java.io.Serializable{
     }
 
     public void getUserInfo(int libraryCardNum){
-    	User tempUser;
-    	int tempID;
-    	boolean flag = false;
+        User tempUser;
+        int tempID;
+        boolean flag = false;
         for(int x = 0; x < users.size(); x++) {
-        	tempUser = users.get(x);
-        	tempID = tempUser.getID();
+            tempUser = users.get(x);
+            tempID = tempUser.getID();
             if(tempID == libraryCardNum){
                 System.out.println("User found.\n");
                 System.out.println("Name: ");
@@ -96,17 +89,17 @@ public class Library implements java.io.Serializable{
             }
         }
         if (flag != true) {
-                System.out.println("User not found. Please enter a valid ID.");
+            System.out.println("User not found. Please enter a valid ID.");
         }
     }
 
     public void getItemInfo(String name){
-    	Item tempItem;
-    	String tempName;
-    	boolean flag = false;
+        Item tempItem;
+        String tempName;
+        boolean flag = false;
         for(int x = 0; x < items.size(); x++) {
-        	tempItem = items.get(x);
-        	tempName = tempItem.getName();
+            tempItem = items.get(x);
+            tempName = tempItem.getName();
             if(tempName == name){
                 System.out.println("Item found.\n");
                 System.out.println("Name: ");
@@ -121,327 +114,270 @@ public class Library implements java.io.Serializable{
             }
         }
         if (flag != true) {
-                System.out.println("Item not found. Please enter a valid item name.");
+            System.out.println("Item not found. Please enter a valid item name.");
         }
     }
-    
+
     public void writeBooks() {
-    	String filename = "books.bin";
-        // Serialization 
+        String filename = "books.bin";
+        // Serialization
         try
-        {   
+        {
             //Saving of object in a file
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
-              
+
             for (Book book : this.books) {
-            	out.writeObject(book);
+                out.writeObject(book);
             }
 
             out.close();
             file.close();
-              
+
             System.out.println("Object has been serialized");
-  
+
         }
-          
+
         catch(IOException ex)
         {
             System.out.println("IOException is caught");
-        }    	
-	
-    }
-   
+        }
 
-    public void readBooks() {
-    	String filename = "books.bin";
-    	try
-        {   
-            // Reading the object from a file
-            FileInputStream file = new FileInputStream(filename);
-            ObjectInputStream in = new ObjectInputStream(file);
-    		while(true) {
-    			addBook((Book) in.readObject());
-    		}
-    			
-    	}
-    	catch(Exception e) {}
-
-            
-            //System.out.println("Object has been deserialized ");
     }
-    
+
     public void addBook(Book y){
         books.add(y);
     }
 
-    public void writeUsers() {
-    	String filename = "users.bin";
-        // Serialization 
+
+    public void readBooks() {
+        String filename = "books.bin";
         try
-        {   
+        {
+            // Reading the object from a file
+            FileInputStream file = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(file);
+            while(true) {
+                addBook((Book) in.readObject());
+            }
+
+
+        }
+        catch(Exception e) {}
+
+
+        System.out.println("Object has been deserialized ");
+    }
+
+    public void writeUsers() {
+        String filename = "users.bin";
+        // Serialization
+        try
+        {
             //Saving of object in a file
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
-              
+
             for (User user : this.users) {
-            	out.writeObject(user);
+                out.writeObject(user);
             }
 
             out.close();
             file.close();
-              
+
             System.out.println("Object has been serialized");
-  
+
         }
-          
+
         catch(IOException ex)
         {
             System.out.println("IOException is caught");
-        }    	
-	
+        }
+
     }
-   
+
 
     public void readUsers() {
-    	String filename = "users.bin";
-    	try
-        {   
+        String filename = "users.bin";
+        try
+        {
             // Reading the object from a file
             FileInputStream file = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(file);
-    		while(true) {
-    			addUsers((User) in.readObject());
-    		}
-    			
-    	}
-    	catch(Exception e) {}
+            while(true) {
+                addUsers((User) in.readObject());
+            }
 
-            
-            //System.out.println("Object has been deserialized ");
+        }
+        catch(Exception e) {}
+
+
+        System.out.println("Object has been deserialized ");
     }
-    
+
     public void addUsers(User y){
         users.add(y);
     }
-    
+
     public void writeAudVid() {
-    	String filename = "AudVid.bin";
-        // Serialization 
+        String filename = "AudVid.bin";
+        // Serialization
         try
-        {   
+        {
             //Saving of object in a file
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
-              
+
             for (AudVid av : this.audvids) {
-            	out.writeObject(av);
+                out.writeObject(av);
             }
 
             out.close();
             file.close();
-              
+
             System.out.println("Object has been serialized");
-  
+
         }
-          
+
         catch(IOException ex)
         {
             System.out.println("IOException is caught");
-        }    	
-	
+        }
+
     }
-   
 
     public void readAudVid() {
-    	String filename = "AudVid.bin";
-    	try
-        {   
+        String filename = "AudVid.bin";
+        try
+        {
             // Reading the object from a file
             FileInputStream file = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(file);
-    		while(true) {
-    			addAudVid((AudVid) in.readObject());
-    		}
-    			
-    	}
-    	catch(Exception e) {}
+            while(true) {
+                addAudVid((AudVid) in.readObject());
+            }
 
-            
-            //System.out.println("Object has been deserialized ");
+        }
+        catch(Exception e) {}
+
+
+        System.out.println("Object has been deserialized ");
     }
-    
+
     public void addAudVid(AudVid y){
         audvids.add(y);
     }
-    
+
     public void writeMags() {
-    	String filename = "Mags.bin";
-        // Serialization 
+        String filename = "Mags.bin";
+        // Serialization
         try
-        {   
+        {
             //Saving of object in a file
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
-              
+
             for (Magazine mag : this.mags) {
-            	out.writeObject(mag);
+                out.writeObject(mag);
             }
 
             out.close();
             file.close();
-              
+
             System.out.println("Object has been serialized");
-  
+
         }
-          
+
         catch(IOException ex)
         {
             System.out.println("IOException is caught");
-        }    	
-	
+        }
+
     }
-   
 
     public void readMags() {
-    	String filename = "Mags.bin";
-    	try
-        {   
+        String filename = "Mags.bin";
+        try
+        {
             // Reading the object from a file
             FileInputStream file = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(file);
-    		while(true) {
-    			addMags((Magazine) in.readObject());
-    		}
-    			
-    	}
-    	catch(Exception e) {}
+            while(true) {
+                addMags((Magazine) in.readObject());
+            }
 
-            
-            //System.out.println("Object has been deserialized ");
+        }
+        catch(Exception e) {}
+
+
+        System.out.println("Object has been deserialized ");
     }
-    
+
     public void addMags(Magazine y){
         mags.add(y);
     }
 
-    
     public void writeRefBook() {
-    	String filename = "RefBook.bin";
-        // Serialization 
+        String filename = "RefBook.bin";
+        // Serialization
         try
-        {   
+        {
             //Saving of object in a file
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
-              
+
             for (ReferenceBook refbook : this.refbooks) {
-            	out.writeObject(refbook);
+                out.writeObject(refbook);
             }
 
             out.close();
             file.close();
-              
+
             System.out.println("Object has been serialized");
-  
+
         }
-          
+
         catch(IOException ex)
         {
             System.out.println("IOException is caught");
-        }    	
-	
+        }
+
     }
-   
 
     public void readRefBook() {
-    	String filename = "RefBook.bin";
-    	try
-        {   
+        String filename = "RefBook.bin";
+        try
+        {
             // Reading the object from a file
             FileInputStream file = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(file);
-    		while(true) {
-    			addRefBook((ReferenceBook) in.readObject());
-    		}
-    			
-    	}
-    	catch(Exception e) {}
+            while(true) {
+                addRefBook((ReferenceBook) in.readObject());
+            }
 
-            
-            //System.out.println("Object has been deserialized ");
+        }
+        catch(Exception e) {}
+
+
+        System.out.println("Object has been deserialized ");
     }
-    
+
     public void addRefBook(ReferenceBook y){
         refbooks.add(y);
     }
-    
+
     public void integrate() {
-    	for (ReferenceBook refbook : this.refbooks) {
-    		items.add(refbook);
-    	}
-    	for (Magazine mag : this.mags) {
-    		items.add(mag);
-    	}
-    	for (Book book: this.books) {
-    		items.add(book);
-    	}
-    	for (AudVid av : this.audvids) {
-    		items.add(av);
-    	}
+        for (ReferenceBook refbook : this.refbooks) {
+            items.add(refbook);
+        }
+        for (Magazine mag : this.mags) {
+            items.add(mag);
+        }
+        for (Book book: this.books) {
+            items.add(book);
+        }
+        for (AudVid av : this.audvids) {
+            items.add(av);
+        }
     }
-    
-    public void update(Item item) {
-    	Book bookEx = new Book("1", 9.55f, false);
-    	AudVid avEx = new AudVid("1", 1.50f);
-    	ReferenceBook refBook = new ReferenceBook("Map", 3.85f);
-        Magazine mag = new Magazine("Ex", 19.99f);
-        
-    	for (Item x : this.items) {
-    		if (item.getName().equals(x.getName())) {
-    			int idx = this.items.indexOf(x);
-    			this.items.set(idx, item);
-    		}
-    	}   		
-    	if (item.getClass() == bookEx.getClass()) {
-    		for (Book x : this.books) {
-    			if (item.getName().equals(x.getName())) {
-    				int idx = this.books.indexOf(x);
-    				this.books.set(idx,(Book) item);
-    			}
-    		}
-    	}
-    	else if (item.getClass() == avEx.getClass()) {
-    		for (AudVid x : this.audvids) {
-    			if (item.getName().equals(x.getName())) {
-    				int idx = this.items.indexOf(x);
-    				this.audvids.set(idx,(AudVid) item);
-    			}
-    		}
-    	}
-    	else if (item.getClass() == refBook.getClass()) {
-    		for (ReferenceBook x : this.refbooks) {
-    			if (item.getName().equals(x.getName())) {
-    				int idx = this.refbooks.indexOf(x);
-    				this.refbooks.set(idx,(ReferenceBook) item);
-    			}
-    		}
-    	}
-    	else {
-    		for (Magazine x : this.mags) {
-    			if (item.getName().equals(x.getName())) {
-    				int idx = this.mags.indexOf(x);
-    				this.mags.set(idx,(Magazine) item);
-    			}
-    		}
-    	}
-    }
-    public void update(User user) {      
-    	for (User x : this.users) {
-    		if (user.getName().equals(x.getName())) {
-    			int idx = this.users.indexOf(x);
-    			this.users.set(idx, user);
-    		}
-    	}   		
-    } 	
 }

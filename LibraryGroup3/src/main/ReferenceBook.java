@@ -1,18 +1,10 @@
 package main;
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 public class ReferenceBook extends Item {
 
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	public ReferenceBook(String a, float b) {
-		super(a, b);
-		this.loanable = false;
-	}
+    public ReferenceBook(String a, float b) {
+        super(a, b);
+        this.loanable = false;
+    }
 }

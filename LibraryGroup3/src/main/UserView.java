@@ -1,8 +1,4 @@
 package main;
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
 public class UserView extends JFrame {
-    private JFrame userFrame = new JFrame("'s Library Card");
     private JPanel userPanel = new JPanel();
     private JLabel nameLabel = new JLabel("Name: ");
     private JLabel ageLabel = new JLabel("Age: ");
@@ -19,18 +14,13 @@ public class UserView extends JFrame {
     private JLabel libraryIdLabel = new JLabel("Library Card Number: ");
     private JLabel finesLabel = new JLabel("Total Fines: ");
     private JLabel numitemsCheckedOut = new JLabel("# Items Checked Out");
-    private JList<Item> checkedoutItemsList = new JList<>();
     private JButton checkOutButton = new JButton("Checkout Items");
     private JButton payFineButton = new JButton("Pay Fines");
     private JButton returnItemButton = new JButton("Return Items");
     private JButton renewItemButton = new JButton("Renew Items");
     private JButton mainMenuButton = new JButton("Main Menu");
     protected Library library;
-<<<<<<< Updated upstream
-
-=======
     protected User user;
->>>>>>> Stashed changes
     //"User's Library Card"
     //  Name:
     //  Age:
@@ -47,8 +37,20 @@ public class UserView extends JFrame {
 
     UserView(Library library, User user) {
         this.library = library;
-        
+        this.user = user;
+
+        DefaultListModel<String> model = new DefaultListModel<>();
+        JList<String> usersItemList = new JList<>(model);
+
+        for (String string : user.getItemsCheckedOut()) {
+            model.addElement(string);
+        }
+
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(usersItemList);
+
         JLabel name = new JLabel(user.getName());
+        JFrame userFrame = new JFrame(user.getName() + "'s Library Card");
         JLabel age = new JLabel(Integer.toString(user.getAge()));
         JLabel address = new JLabel(user.getAddress());
         JLabel phone = new JLabel(user.getPhoneNumber());
@@ -62,15 +64,13 @@ public class UserView extends JFrame {
 
         userPanel.setLayout(new GridLayout(12, 2));
 
-        //CheckedOutItems List
-
         //Buttons
         checkOutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == checkOutButton) {
                     userFrame.dispose();
-                    ItemSearchView itemSearchView = new ItemSearchView(library, user);
+                    CheckOutView checkoutview = new CheckOutView(library, user);
                 }
             }
         });
@@ -80,7 +80,7 @@ public class UserView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == payFineButton) {
                     userFrame.dispose();
-                    PayFineView payfineview = new PayFineView(library);
+                    PayFineView payfineview = new PayFineView(library, user);
                 }
             }
         });
@@ -90,7 +90,7 @@ public class UserView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == returnItemButton) {
                     userFrame.dispose();
-                    ReturnItemView returnitemview = new ReturnItemView(library);
+                    ReturnItemView returnitemview = new ReturnItemView(library, user);
                 }
             }
         });
@@ -100,7 +100,7 @@ public class UserView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == renewItemButton) {
                     userFrame.dispose();
-                    RenewItemView renewitemview = new RenewItemView(library);
+                    RenewItemView renewitemview = new RenewItemView(library, user);
                 }
             }
         });
@@ -129,7 +129,7 @@ public class UserView extends JFrame {
         userPanel.add(fines);
         userPanel.add(numitemsCheckedOut);
         userPanel.add(chkOut);
-        userPanel.add(checkedoutItemsList);
+        userPanel.add(scrollPane);
         userPanel.add(checkOutButton);
         userPanel.add(payFineButton);
         userPanel.add(returnItemButton);
