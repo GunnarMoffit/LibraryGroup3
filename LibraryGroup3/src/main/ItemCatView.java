@@ -42,11 +42,13 @@ public class ItemCatView {
             }
         }
 
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(catList);
 
-        Frame.setSize(300, 400);
+        Frame.setSize(300, 200);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //Panel.setLayout(new GridLayout(4, 1));
+        Panel.setLayout(new GridLayout(2, 2));
 
         viewSelectButton.addActionListener(new ActionListener() {
             @Override
@@ -75,9 +77,9 @@ public class ItemCatView {
         });
 
         Panel.add(label);
-        Panel.add(catList);
-        Panel.add(viewSelectButton);
+        Panel.add(scrollPane);
         Panel.add(mainMenuButton);
+        Panel.add(viewSelectButton);
         Frame.add(Panel);
         Frame.setLocationRelativeTo(null);
         Frame.setVisible(true);

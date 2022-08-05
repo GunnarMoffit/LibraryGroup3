@@ -1,4 +1,3 @@
-
 public class ReferenceBook extends Item {
 
     private static final long serialVersionUID = 1L;
@@ -8,4 +7,3 @@ public class ReferenceBook extends Item {
         this.loanable = false;
     }
 }
-
